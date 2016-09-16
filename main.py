@@ -33,56 +33,14 @@ char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
 
-#MAIN LOOP
-game_over = False
-while not game_over:
-    char_1.checking_overlaping()
-    char_2.checking_overlaping()
-    char_1.space_limit()
-    char_2.space_limit()
-    game_over = char_1.life <= 0 and char_2.life <= 0
-    char_1_life = Lifebar(display, char_1, 20, 20)
-    char_2_life = Lifebar(display, char_2, 700, 20)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_over = True
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                char_1.moves.append("right")
-            if event.key == pygame.K_LEFT:
-                char_1.moves.append("left")
-            if event.key == pygame.K_d:
-                char_2.moves.append("right")
-            if event.key == pygame.K_a:
-                char_2.moves.append("left")
-            if event.key == pygame.K_w:
-                if char_2.in_jump <= 0:
-                    char_2.in_jump = 50
-            if event.key == pygame.K_UP:
-                if char_1.in_jump <= 0:
-                    char_1.in_jump = 50
-            if event.key == pygame.K_s:
-                char_2.crouch_stage = True
-            if event.key == pygame.K_DOWN:
-                char_1.crouch_stage = True
-                # punch
-            elif event.key == pygame.K_SPACE:
-                char_2.punch()
-            elif event.key == pygame.K_l:
-                char_1.punch()
-        # -------------------------
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT:
-                char_1.moves.remove("right")
-characters = [char_1, char_2]
 
 on = True
-display.blit(story_1, [0, 0])
-clock.tick(1000)
-display.blit(story_2, [0, 0])
-clock.tick(1000)
-display.blit(story_3, [0, 0])
-clock.tick(1000)
+# display.blit(story_1, [0, 0])
+# clock.tick(1000)
+# display.blit(story_2, [0, 0])
+# clock.tick(1000)
+# display.blit(story_3, [0, 0])
+# clock.tick(1000)
 while on:
     game_over = False
     char_1.life = 100
