@@ -1,6 +1,7 @@
 import pygame
 from character import Character
 from lifebar import Lifebar
+import random
 
 pygame.init()
 
@@ -31,109 +32,121 @@ characters = [char_1, char_2]
 
 characters = [char_1, char_2]
 
-#MAIN LOOP
-game_over = False
-while not game_over:
-    game_over = char_1.life <= 0 or char_2.life <= 0
-    char_1_life = Lifebar(display, char_1, 20, 20)
-    char_2_life = Lifebar(display, char_2, 700, 20)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_over = True
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                char_1.moves.append("right")
-            if event.key == pygame.K_LEFT:
-                char_1.moves.append("left")
-            if event.key == pygame.K_d:
-                char_2.moves.append("right")
-            if event.key == pygame.K_a:
-                char_2.moves.append("left")
-            if event.key == pygame.K_w:
-                if char_2.in_jump <= 0:
-                    char_2.in_jump = 50
-            if event.key == pygame.K_UP:
-                if char_1.in_jump <= 0:
-                    char_1.in_jump = 50
-            if event.key == pygame.K_s:
-                char_2.crouch_stage = True
-            if event.key == pygame.K_DOWN:
-                char_1.crouch_stage = True
-        # PUNCH
-            elif event.key == pygame.K_l:
-                char_1.punch()
-            elif event.key == pygame.K_SPACE:
-                char_2.punch()
+on = True
+while on:
+    game_over = False
+    char_1.life = 100
+    char_2.life = 100
+    while not game_over:
+        game_over = char_1.life <= 0 or char_2.life <= 0
+        if game_over:
+            if char_1.life < 1:
+                char_2.won += 1
+            if char_2.life < 1:
+                char_1.won += 1
+            if char_1.won == 3 or char_2.won == 3:
+                on = False
+        char_1_life = Lifebar(display, char_1, 20, 20)
+        char_2_life = Lifebar(display, char_2, 700, 20)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_over = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    char_1.moves.append("right")
+                if event.key == pygame.K_LEFT:
+                    char_1.moves.append("left")
+                if event.key == pygame.K_d:
+                    char_2.moves.append("right")
+                if event.key == pygame.K_a:
+                    char_2.moves.append("left")
+                if event.key == pygame.K_w:
+                    if char_2.in_jump <= 0:
+                        char_2.in_jump = 50
+                if event.key == pygame.K_UP:
+                    if char_1.in_jump <= 0:
+                        char_1.in_jump = 50
+                if event.key == pygame.K_s:
+                    char_2.crouch_stage = True
+                if event.key == pygame.K_DOWN:
+                    char_1.crouch_stage = True
+            # PUNCH
+                elif event.key == pygame.K_l:
+                    char_1.punch()
+                elif event.key == pygame.K_SPACE:
+                    char_2.punch()
 
-        # HEAD
-            elif event.key == pygame.K_k:
-                char_1.head()
-            elif event.key == pygame.K_x:
-                char_2.head()
-        # KICK
-            elif event.key == pygame.K_j:
-                char_1.kick()
-            elif event.key == pygame.K_c:
-                char_2.kick()
+            # HEAD
+                elif event.key == pygame.K_k:
+                    char_1.head()
+                elif event.key == pygame.K_x:
+                    char_2.head()
+            # KICK
+                elif event.key == pygame.K_j:
+                    char_1.kick()
+                elif event.key == pygame.K_c:
+                    char_2.kick()
 
-            if event.key == pygame.K_m:
-                char_1.block()
-            if event.key == pygame.K_n:
-                char_2.block()
-        # -------------------------
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT:
-                char_1.moves.remove("right")
+                if event.key == pygame.K_m:
+                    char_1.block()
+                if event.key == pygame.K_n:
+                    char_2.block()
+                if event.key == pygame.K_y:
+                    random.choice[characters].life = 100
+            # -------------------------
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    char_1.moves.remove("right")
 
-            if event.key == pygame.K_LEFT:
-                char_1.moves.remove("left")
-            if event.key == pygame.K_d:
-                char_2.moves.remove("right")
-            if event.key == pygame.K_a:
-                char_2.moves.remove("left")
-            if event.key == pygame.K_s:
-                char_2.crouch_stage = False
-            if event.key == pygame.K_DOWN:
-                char_1.crouch_stage = False
-            if event.key == pygame.K_m:
-                char_1.block_out()
-            if event.key == pygame.K_n:
-                char_2.block_out()
+                if event.key == pygame.K_LEFT:
+                    char_1.moves.remove("left")
+                if event.key == pygame.K_d:
+                    char_2.moves.remove("right")
+                if event.key == pygame.K_a:
+                    char_2.moves.remove("left")
+                if event.key == pygame.K_s:
+                    char_2.crouch_stage = False
+                if event.key == pygame.K_DOWN:
+                    char_1.crouch_stage = False
+                if event.key == pygame.K_m:
+                    char_1.block_out()
+                if event.key == pygame.K_n:
+                    char_2.block_out()
 
-    for character in characters:
-        if character.stage == 'block':
-            if character.blockpower > 200:
-                character.blockpower -= 200
-            else:
-                character.block_out()
-        if character.blockpower < 10000:
-            character.blockpower += 50
-        character.jump_step()
-        character.crouch()
-        for direction in character.moves:
-            character.move(direction)
-        character.in_punch -= 1
-        character.in_head -= 1
-        character.in_kick -= 1
-        if character.in_punch <= 0 and character.stage == 'punch':
-            character.stage = 'stand'
-        if character.crouch_stage is False and character.stage == 'crouch':
-            character.stage = 'stand'
-        if character.in_jump <= 0 and character.stage == 'jump':
-            character.stage = 'stand'
-        if character.in_head <= 0 and character.stage == 'head':
-            character.stage = 'stand'
-        if character.in_kick <= 0 and character.stage == 'kick':
-            character.stage = 'stand'
+        for character in characters:
+            if character.stage == 'block':
+                if character.blockpower > 200:
+                    character.blockpower -= 200
+                else:
+                    character.block_out()
+            if character.blockpower < 10000:
+                character.blockpower += 50
+            character.jump_step()
+            character.crouch()
+            for direction in character.moves:
+                character.move(direction)
+            character.in_punch -= 1
+            character.in_head -= 1
+            character.in_kick -= 1
+            if character.in_punch <= 0 and character.stage == 'punch':
+                character.stage = 'stand'
+            if character.crouch_stage is False and character.stage == 'crouch':
+                character.stage = 'stand'
+            if character.in_jump <= 0 and character.stage == 'jump':
+                character.stage = 'stand'
+            if character.in_head <= 0 and character.stage == 'head':
+                character.stage = 'stand'
+            if character.in_kick <= 0 and character.stage == 'kick':
+                character.stage = 'stand'
 
-    display.blit(background_image, [0, 0])
-    char_1_life.show()
-    char_2_life.show()
-    char_1.show_img()
-    char_2.show_img()
-    pygame.display.update()
+        display.blit(background_image, [0, 0])
+        char_1_life.show()
+        char_2_life.show()
+        char_1.show_img()
+        char_2.show_img()
+        pygame.display.update()
 
-    clock.tick(60)
+        clock.tick(60)
 
 
 pygame.quit()

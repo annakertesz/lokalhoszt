@@ -1,4 +1,5 @@
 import pygame
+import random
 
 
 class Character:
@@ -25,6 +26,7 @@ class Character:
         self.blockpower = 10000
         self.in_punch = 0
         self.opponent = None
+        self.won = 0
 
     def show_img(self):
         if self.direction == 'left':
@@ -81,15 +83,19 @@ class Character:
             punch_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
                                      self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
-        if self.in_punch <= 0:
+        if self.in_punch <= -30 and self.in_kick <= -30 and self.in_head <= -30:
             self.in_punch = 30
             self.stage = 'punch'
             self.show_img()
-        if opponent_rectbox.colliderect(punch_rect):
-            if self.opponent.stage != 'block':
-                self.opponent.life -= 11
-            elif self.opponent.direction == self.direction:
-                self.opponent.life -= 11
+            if opponent_rectbox.colliderect(punch_rect):
+                dmg = random.randint(1, 99)
+                if self.opponent.stage != 'block':
+                    self.opponent.life -= dmg
+                elif self.opponent.direction == self.direction:
+                    self.opponent.life -= dmg
+                x_push = int(200 * dmg/100)
+                if self.direction == 'left':
+                    x_push = - x_push
 
     def block(self):
         self.stage = 'block'
@@ -105,16 +111,20 @@ class Character:
             kick_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
                                     self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
-        if self.in_kick <= 0:
+        if self.in_punch <= -30 and self.in_kick <= -30 and self.in_head <= -30:
             self.in_kick = 20
             self.stage = 'kick'
             self.show_img()
 
-        if opponent_rectbox.colliderect(kick_rect):
-            if self.opponent.stage != 'block':
-                self.opponent.life -= 11
-            elif self.opponent.direction == self.direction:
-                self.opponent.life -= 11
+            if opponent_rectbox.colliderect(kick_rect):
+                dmg = random.randint(1, 99)
+                if self.opponent.stage != 'block':
+                    self.opponent.life -= dmg
+                elif self.opponent.direction == self.direction:
+                    self.opponent.life -= dmg
+                x_push = int(200 * dmg/100)
+                if self.direction == 'left':
+                    x_push = - x_push
 
     def head(self):
         if self.direction == 'right':
@@ -124,17 +134,18 @@ class Character:
             head_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
                                     self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
-        if self.in_head <= 0:
+        if self.in_punch <= -30 and self.in_kick <= -30 and self.in_head <= -30:
             self.in_head = 10
             self.stage = 'head'
             self.show_img()
 
-        if opponent_rectbox.colliderect(head_rect):
-            x_push = 100
-            if self.direction == 'left':
-                x_push = - 100
-            self.opponent.x += x_push
-            if self.opponent.stage != 'block':
-                self.opponent.life -= 11
-            elif self.opponent.direction == self.direction:
-                self.opponent.life -= 11
+            if opponent_rectbox.colliderect(head_rect):
+                dmg = random.randint(1, 99)
+                if self.opponent.stage != 'block':
+                    self.opponent.life -= dmg
+                elif self.opponent.direction == self.direction:
+                    self.opponent.life -= dmg
+                x_push = int(200 * dmg/100)
+                if self.direction == 'left':
+                    x_push = - x_push
+                self.opponent.x += x_push
