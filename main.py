@@ -11,9 +11,17 @@ pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
 
 background_image = pygame.image.load("images/background.jpg").convert()
+movestages = {
+            'stand': pygame.image.load('images/stand.png').convert_alpha(),
+                       'crouch': pygame.image.load('images/crouch.png').convert_alpha(),
+                       'jump': pygame.image.load('images/jump.png').convert_alpha(),
+                       'kick': pygame.image.load('images/kick.png').convert_alpha(),
+                       'punch': pygame.image.load('images/punch.png').convert_alpha(),
+                       'block': pygame.image.load('images/block.png').convert_alpha()
+             }
 
-little_cube = Char('images/littlecube.png', 20, 20)
-another_cube = Char('images/littlecube.png', 50, 50)
+little_cube = Char(20, 20, 50, 50, "right", movestages, display)
+another_cube = Char(100, 100, 50, 50, "right", movestages, display)
 
 characters = [little_cube, another_cube]
 
@@ -67,8 +75,8 @@ while not game_over:
 
     display.blit(background_image, [0, 0])
 
-    little_cube.show_img(display)
-    another_cube.show_img(display)
+    little_cube.show_img()
+    another_cube.show_img()
     pygame.display.update()
 
     clock.tick(60)
