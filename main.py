@@ -21,8 +21,8 @@ movestages = {
              }
 
 
-little_cube = Char(300, 300, 50, 50, "right", movestages, display)
-another_cube = Char(800, 300, 50, 50, "right", movestages, display)
+little_cube = Character(300, 300, 50, 50, "right", movestages, display)
+another_cube = Character(800, 300, 50, 50, "right", movestages, display)
 
 characters = [little_cube, another_cube]
 
