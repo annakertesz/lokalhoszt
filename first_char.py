@@ -3,14 +3,23 @@ import pygame
 class Char:
 
     def __init__ (self, filename, x, y):
-        self.img = pygame.image.load(filename).convert()
+        self.img = pygame.image.load(filename).convert_alpha()
         self.x = x
         self.y = y
         self.moves = []
+        self.stages = {
+            'stand': pygame.image.load('images/stand.png').convert_alpha(),
+                       'crouch': pygame.image.load('images/crouch.png').convert_alpha(),
+                       'jump': pygame.image.load('images/jump.png').convert_alpha(),
+                       'kick': pygame.image.load('images/kick.png').convert_alpha(),
+                       'punch': pygame.image.load('images/punch.png').convert_alpha(),
+                       'block': pygame.image.load('images/block.png').convert_alpha()
+        }
+        self.stage = 'stand'
 
 
     def show_img(self, parent):
-        parent.blit(self.img, (self.x, self.y))
+        parent.blit(self.stages[self.stage], (self.x, self.y))
 
     def move(self, direction):
 
@@ -36,3 +45,5 @@ class Char:
                 self.y += 10
             else:
                 self.y = 600
+
+
