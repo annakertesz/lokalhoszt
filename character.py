@@ -6,7 +6,7 @@ from sounds import *
 
 class Character:
 
-    def __init__(self, x, y,  direction, movestages, display, width=70, height=380, life=100):
+    def __init__(self, x, y,  direction, movestages, display, width=70, height=150, life=100):
         self.x = x
         self.y = y
         self.width = width
@@ -36,20 +36,31 @@ class Character:
         else:
             self.display.blit(self.movestages[self.stage], (self.x, self.y))
 
+    def checking_overlaping(self):
+        body_rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        opponent_body_rect = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
+        if opponent_body_rect.colliderect(body_rect):
+            if self.direction == 'left':
+                self.opponent.x -= 11
+            elif self.direction == 'right':
+                self.opponent.x += 11
+
+    def space_limit(self):
+        if self.x > 1000:
+            self.x = 1000
+        elif self.x < 0:
+            self.x = 0
+        if self.y > 600:
+            self.y = 600
+        elif self.y < 0:
+            self.y = 0
+
     def move(self, direction):
-
         if direction == 'right':
-            if self.x < 1000:
-                self.x += 10
-            else:
-                self.x = 1000
-            self. direction = 'right'
-
-        if direction == 'left':
-            if self.x > 30:
-                self.x -= 10
-            else:
-                self.x = 20
+            self.x += 10
+            self.direction = 'right'
+        elif direction == 'left':
+            self.x -= 10
             self.direction = 'left'
 
         if direction == 'down':
@@ -59,7 +70,6 @@ class Character:
                 self.y = 600
 
     def jump(self):
-
         if self.in_jump > 20:
             self.y -= int(self.in_jump / 3)
         elif self.y < 400:
