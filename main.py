@@ -1,6 +1,7 @@
 import pygame
 from character import Character
 from lifebar import Lifebar
+from sounds import *
 import random
 
 pygame.init()
@@ -11,6 +12,8 @@ display = pygame.display.set_mode((1280, 1024))
 pygame.display.set_caption('localhost')
 pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
+pygame.mixer.pre_init(44100, 16, 2, 4096)
+pygame.init()
 
 background_image = pygame.image.load("images/background.jpg").convert()
 movestages = {
@@ -147,6 +150,5 @@ while on:
         pygame.display.update()
 
         clock.tick(60)
-
 
 pygame.quit()

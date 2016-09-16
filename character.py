@@ -1,5 +1,7 @@
 import pygame
 import random
+from sounds import *
+
 
 
 class Character:
@@ -85,6 +87,8 @@ class Character:
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_punch <= -30 and self.in_kick <= -30 and self.in_head <= -30:
             self.in_punch = 30
+            random_hit = [sound['hit1'], sound['hit2'], sound['hit3'], sound['hit4'], sound['hit5']]
+            random.choice(random_hit).play()
             self.stage = 'punch'
             self.show_img()
             if opponent_rectbox.colliderect(punch_rect):
@@ -96,6 +100,8 @@ class Character:
                 x_push = int(200 * dmg/100)
                 if self.direction == 'left':
                     x_push = - x_push
+            else:
+                sound['swing'].play()
 
     def block(self):
         self.stage = 'block'
@@ -119,12 +125,18 @@ class Character:
             if opponent_rectbox.colliderect(kick_rect):
                 dmg = random.randint(1, 99)
                 if self.opponent.stage != 'block':
+                    random_kick = [sound['kick1'], sound['kick2'], sound['kick3'], sound['kick4']]
+                    random.choice(random_kick).play()
                     self.opponent.life -= dmg
                 elif self.opponent.direction == self.direction:
+                    random_kick = [sound['kick1'], sound['kick2'], sound['kick3'], sound['kick4']]
+                    random.choice(random_kick).play()
                     self.opponent.life -= dmg
                 x_push = int(200 * dmg/100)
                 if self.direction == 'left':
                     x_push = - x_push
+            else:
+                sound['empty_kick'].play()
 
     def head(self):
         if self.direction == 'right':
@@ -142,10 +154,14 @@ class Character:
             if opponent_rectbox.colliderect(head_rect):
                 dmg = random.randint(1, 99)
                 if self.opponent.stage != 'block':
+                    sound['headbutt'].play()
                     self.opponent.life -= dmg
                 elif self.opponent.direction == self.direction:
+                    sound['headbutt'].play()
                     self.opponent.life -= dmg
                 x_push = int(200 * dmg/100)
                 if self.direction == 'left':
                     x_push = - x_push
                 self.opponent.x += x_push
+            else:
+                sound['swing'].play()
