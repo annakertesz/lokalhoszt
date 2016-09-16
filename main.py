@@ -55,7 +55,7 @@ while not game_over:
             # punch
             elif event.key == pygame.K_SPACE:
                 char_2.punch()
-            elif event.key == pygame.K_0:
+            elif event.key == pygame.K_ENTER:
                 char_1.punch()
         # -------------------------
         elif event.type == pygame.KEYUP:
