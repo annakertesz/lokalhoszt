@@ -33,6 +33,7 @@ characters = [char_1, char_2]
 #MAIN LOOP
 game_over = False
 while not game_over:
+    game_over = char_1.life <= 0 and char_2.life <= 0
     char_1_life = Lifebar(display, char_1, 20, 20)
     char_2_life = Lifebar(display, char_2, 700, 20)
     for event in pygame.event.get():
@@ -98,7 +99,6 @@ while not game_over:
     char_1.show_img()
     char_2.show_img()
     pygame.display.update()
-    game_over = char_1.life <= 0 or char_2.life <= 0
 
     clock.tick(60)
 
