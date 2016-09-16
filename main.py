@@ -11,7 +11,7 @@ pygame.display.set_caption('localhost')
 pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
 
-background_image = pygame.image.load("images/background.jpg").convert()
+background_image = pygame.image.load("images/background.png").convert()
 movestages = {
             'stand': pygame.image.load('images/stand.png').convert_alpha(),
                        'crouch': pygame.image.load('images/crouch.png').convert_alpha(),
@@ -33,7 +33,7 @@ characters = [char_1, char_2]
 #MAIN LOOP
 game_over = False
 while not game_over:
-    game_over = char_1.life <= 0 and char_2.life <= 0
+    game_over = char_1.life <= 0 or char_2.life <= 0
     char_1_life = Lifebar(display, char_1, 20, 20)
     char_2_life = Lifebar(display, char_2, 700, 20)
     for event in pygame.event.get():
