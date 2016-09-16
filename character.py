@@ -1,8 +1,8 @@
 import pygame
 
-class Char:
+class Character:
 
-    def __init__ (self, x, y, width, height, direction, movestages, display, life=100):
+    def __init__(self, x, y, width, height, direction, movestages, display, life=100):
         self.x = x
         self.y = y
         self.moves = []
