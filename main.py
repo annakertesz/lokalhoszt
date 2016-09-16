@@ -21,10 +21,10 @@ movestages = {
              }
 
 
-little_cube = Character(20, 20, 50, 50, "right", movestages, display)
-another_cube = Character(100, 100, 50, 50, "right", movestages, display)
+char_1 = Character(20, 20, 50, 50, "right", movestages, display)
+char_2 = Character(100, 100, 50, 50, "right", movestages, display)
 
-characters = [little_cube, another_cube]
+characters = [char_1, char_2]
 
 #MAIN LOOP
 game_over = False
@@ -33,52 +33,60 @@ while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
-        if event.type == pygame.KEYDOWN:
+        elif event.type == pygame.KEYDOWN:
+            # move
             if event.key == pygame.K_RIGHT:
-                little_cube.moves.append("right")
-            if event.key == pygame.K_UP:
-                little_cube.moves.append("up")
-            if event.key == pygame.K_LEFT:
-                little_cube.moves.append("left")
-            if event.key == pygame.K_DOWN:
-                little_cube.moves.append("down")
-            if event.key == pygame.K_d:
-                another_cube.moves.append("right")
-            if event.key == pygame.K_w:
-                another_cube.moves.append("up")
-            if event.key == pygame.K_a:
-                another_cube.moves.append("left")
-            if event.key == pygame.K_s:
-                another_cube.moves.append("down")
+                char_1.moves.append("right")
+            elif event.key == pygame.K_UP:
+                char_1.moves.append("up")
+            elif event.key == pygame.K_LEFT:
+                char_1.moves.append("left")
+            elif event.key == pygame.K_DOWN:
+                char_1.moves.append("down")
+            elif event.key == pygame.K_d:
+                char_2.moves.append("right")
+            elif event.key == pygame.K_w:
+                char_2.moves.append("up")
+            elif event.key == pygame.K_a:
+                char_2.moves.append("left")
+            elif event.key == pygame.K_s:
+                char_2.moves.append("down")
+            # punch
+            elif event.key == pygame.K_SPACE:
+                char_2.punch()
         # -------------------------
-        if event.type == pygame.KEYUP:
+        elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
-                little_cube.moves.remove("right")
-            if event.key == pygame.K_UP:
-                little_cube.moves.remove("up")
-            if event.key == pygame.K_LEFT:
-                little_cube.moves.remove("left")
-            if event.key == pygame.K_DOWN:
-                little_cube.moves.remove("down")
-            if event.key == pygame.K_d:
-                another_cube.moves.remove("right")
-            if event.key == pygame.K_w:
-                another_cube.moves.remove("up")
-            if event.key == pygame.K_a:
-                another_cube.moves.remove("left")
-            if event.key == pygame.K_s:
-                another_cube.moves.remove("down")
+                char_1.moves.remove("right")
+            elif event.key == pygame.K_UP:
+                char_1.moves.remove("up")
+            elif event.key == pygame.K_LEFT:
+                char_1.moves.remove("left")
+            elif event.key == pygame.K_DOWN:
+                char_1.moves.remove("down")
+            elif event.key == pygame.K_d:
+                char_2.moves.remove("right")
+            elif event.key == pygame.K_w:
+                char_2.moves.remove("up")
+            elif event.key == pygame.K_a:
+                char_2.moves.remove("left")
+            elif event.key == pygame.K_s:
+                char_2.moves.remove("down")
+
+
+
 
     for character in characters:
         for direction in character.moves:
             character.move(direction)
+        character.in_punch -= 1
+        if character.in_punch <= 0:
+            character.stage = 'stand'
 
     display.blit(background_image, [0, 0])
-
-    little_cube.show_img()
-    another_cube.show_img()
+    char_1.show_img()
+    char_2.show_img()
     pygame.display.update()
-
     clock.tick(60)
 
 
