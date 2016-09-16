@@ -94,6 +94,8 @@ class Character:
                 self.opponent.life -= 11
             elif self.opponent.direction == self.direction:
                 self.opponent.life -= 11
+        else:
+            sound['swing'].play()
 
     def block(self):
         self.stage = 'block'
@@ -121,6 +123,8 @@ class Character:
                 self.opponent.life -= 11
             elif self.opponent.direction == self.direction:
                 self.opponent.life -= 11
+        else:
+            sound['empty_kick'].play()
 
     def head(self):
         if self.direction == 'right':
@@ -146,3 +150,5 @@ class Character:
             elif self.opponent.direction == self.direction:
                 sound['block'].play()
                 self.opponent.life -= 11
+        else:
+            sound['swing'].play()
