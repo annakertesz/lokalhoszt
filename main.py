@@ -22,17 +22,19 @@ movestages = {
              }
 
 
-char_1 = Character(20, 20, "right", movestages, display)
-char_2 = Character(100, 100, "right", movestages, display)
+char_1 = Character(100, 20, "right", movestages, display)
+char_2 = Character(500, 20, "right", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
-characters = [char_1, char_2]
-
 characters = [char_1, char_2]
 
 #MAIN LOOP
 game_over = False
 while not game_over:
+    char_1.checking_overlaping()
+    char_2.checking_overlaping()
+    char_1.space_limit()
+    char_2.space_limit()
     game_over = char_1.life <= 0 and char_2.life <= 0
     char_1_life = Lifebar(display, char_1, 20, 20)
     char_2_life = Lifebar(display, char_2, 700, 20)
