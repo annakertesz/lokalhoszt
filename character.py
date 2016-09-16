@@ -1,4 +1,6 @@
 import pygame
+import random
+from sounds import *
 
 
 class Character:
@@ -83,6 +85,8 @@ class Character:
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_punch <= 0:
             self.in_punch = 30
+            random_hit = [sound['hit1'], sound['hit2'], sound['hit3'], sound['hit4'], sound['hit5']]
+            random.choice(random_hit).play()
             self.stage = 'punch'
             self.show_img()
         if opponent_rectbox.colliderect(punch_rect):
@@ -106,12 +110,14 @@ class Character:
                                     self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_kick <= 0:
-            self.in_kick = 20
+            self.in_kick = 40
             self.stage = 'kick'
             self.show_img()
 
         if opponent_rectbox.colliderect(kick_rect):
             if self.opponent.stage != 'block':
+                random_kick = [sound['kick1'], sound['kick2'], sound['kick3'], sound['kick4']]
+                random.choice(random_kick).play()
                 self.opponent.life -= 11
             elif self.opponent.direction == self.direction:
                 self.opponent.life -= 11
@@ -125,7 +131,7 @@ class Character:
                                     self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_head <= 0:
-            self.in_head = 10
+            self.in_head = 50
             self.stage = 'head'
             self.show_img()
 
@@ -135,6 +141,8 @@ class Character:
                 x_push = - 100
             self.opponent.x += x_push
             if self.opponent.stage != 'block':
+                sound['headbutt'].play()
                 self.opponent.life -= 11
             elif self.opponent.direction == self.direction:
+                sound['block'].play()
                 self.opponent.life -= 11

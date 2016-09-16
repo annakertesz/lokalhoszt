@@ -1,15 +1,15 @@
 import pygame
 from character import Character
 from lifebar import Lifebar
-
-pygame.init()
-
+from sounds import *
 
 #main settings
 display = pygame.display.set_mode((1280, 1024))
 pygame.display.set_caption('localhost')
 pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
+pygame.mixer.pre_init(44100, 16, 2, 4096)
+pygame.init()
 
 background_image = pygame.image.load("images/background.jpg").convert()
 movestages = {
@@ -29,14 +29,12 @@ char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
 
-characters = [char_1, char_2]
-
 #MAIN LOOP
 game_over = False
 while not game_over:
     game_over = char_1.life <= 0 or char_2.life <= 0
     char_1_life = Lifebar(display, char_1, 20, 20)
-    char_2_life = Lifebar(display, char_2, 700, 20)
+    char_2_life = Lifebar(display, char_2, 950, 20)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
@@ -75,7 +73,7 @@ while not game_over:
                 char_1.kick()
             elif event.key == pygame.K_c:
                 char_2.kick()
-        #BLOCK
+        # BLOCK
             if event.key == pygame.K_m:
                 char_1.block()
             if event.key == pygame.K_n:
@@ -134,6 +132,5 @@ while not game_over:
     pygame.display.update()
 
     clock.tick(60)
-
 
 pygame.quit()
