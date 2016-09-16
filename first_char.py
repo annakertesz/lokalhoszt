@@ -17,12 +17,16 @@ class Char:
         }
         self.stage = 'stand'
 
+        self.life = life
+        self.direction = direction
+        self.movestages = movestages
+        self.rectbox = rectbox
+
 
     def show_img(self, parent):
         parent.blit(self.stages[self.stage], (self.x, self.y))
 
     def move(self, direction):
-
         if direction == 'up':
             if self.y > 30:
                 self.y -= 10
@@ -47,3 +51,24 @@ class Char:
                 self.y = 600
 
 
+
+    def move(self):
+        pass
+
+    def jump(self):
+        pass
+
+    def crouch(self):
+        pass
+
+    def punch(self):
+        pass
+
+    def block(self):
+        pass
+
+    def kick(self):
+        pass
+
+    def head(self):
+        pass
