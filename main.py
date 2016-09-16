@@ -22,8 +22,13 @@ movestages = {
              }
 
 
-little_cube = Character(300, 300, 50, 50, "right", movestages, display)
-another_cube = Character(800, 300, 50, 50, "right", movestages, display)
+char_1 = Character(20, 20, "right", movestages, display)
+char_2 = Character(100, 100, "right", movestages, display)
+char_1.opponent = char_2
+char_2.opponent = char_1
+characters = [char_1, char_2]
+#little_cube = Character(300, 300, 50, 50, "right", movestages, display)
+#another_cube = Character(800, 300, 50, 50, "right", movestages, display)
 little_cube_life = Lifebar(display, little_cube, 20, 20)
 another_cube_life = Lifebar(display, another_cube, 700, 20)
 
@@ -36,7 +41,8 @@ while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
-        if event.type == pygame.KEYDOWN:
+        elif event.type == pygame.KEYDOWN:
+            # move
             if event.key == pygame.K_RIGHT:
                 little_cube.moves.append("right")
             if event.key == pygame.K_LEFT:
@@ -55,8 +61,13 @@ while not game_over:
                 another_cube.crouch_stage = True
             if event.key == pygame.K_DOWN:
                 little_cube.crouch_stage = True
+                # punch
+            elif event.key == pygame.K_SPACE:
+                char_2.punch()
+            elif event.key == pygame.K_l:
+                char_1.punch()
         # -------------------------
-        if event.type == pygame.KEYUP:
+        elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
                 little_cube.moves.remove("right")
 
@@ -76,12 +87,9 @@ while not game_over:
         character.crouch()
         for direction in character.moves:
             character.move(direction)
-
-
-
-
-
-
+        character.in_punch -= 1
+        if character.in_punch <= 0:
+            character.stage = 'stand'
 
     display.blit(background_image, [0, 0])
     little_cube_life.show()
