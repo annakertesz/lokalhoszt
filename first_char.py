@@ -2,11 +2,21 @@ import pygame
 
 class Char:
 
+    def __init__ (self, filename, x, y):
+        self.img = pygame.image.load(filename).convert_alpha()
+        self.x = x
+        self.y = y
+        self.moves = []
+        self.stages = {
+            'stand': pygame.image.load('images/stand.png').convert_alpha(),
+                       'crouch': pygame.image.load('images/crouch.png').convert_alpha(),
+                       'jump': pygame.image.load('images/jump.png').convert_alpha(),
+                       'kick': pygame.image.load('images/kick.png').convert_alpha(),
+                       'punch': pygame.image.load('images/punch.png').convert_alpha(),
+                       'block': pygame.image.load('images/block.png').convert_alpha()
+        }
+        self.stage = 'stand'
 
-    def __init__ (self, filename, direction, movestages, rectbox, life=100):
-        self.img = pygame.image.load(filename).convert()
-        self.x = 20
-        self.y = 20
         self.life = life
         self.direction = direction
         self.movestages = movestages
@@ -14,17 +24,33 @@ class Char:
 
 
     def show_img(self, parent):
-        parent.blit(self.img, (self.x, self.y))
+        parent.blit(self.stages[self.stage], (self.x, self.y))
 
     def move(self, direction):
         if direction == 'up':
-            self.y -= 10
+            if self.y > 30:
+                self.y -= 10
+            else:
+                self.y = 20
+
         if direction == 'right':
-            self.x += 10
+            if self.x < 1000:
+                self.x += 10
+            else:
+                self.x = 1000
+
         if direction == 'left':
-            self.x -= 10
+            if self.x > 30:
+                self.x -= 10
+            else:
+                self.x = 20
         if direction == 'down':
-            self.y += 10
+            if self.y < 600:
+                self.y += 10
+            else:
+                self.y = 600
+
+
 
     def move(self):
         pass
