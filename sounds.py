@@ -15,5 +15,5 @@ sound = {
     'kick3': mixer.Sound('sounds/kick3.wav'),
     'kick4': mixer.Sound('sounds/kick4.wav'),
     'spin1': mixer.Sound('sounds/spin1.wav'),
-    'kick_empty': mixer.Sound('sounds/kick_empty.wav')
+    'empty_kick': mixer.Sound('sounds/kick_empty.wav')
 }
