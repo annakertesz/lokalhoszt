@@ -1,5 +1,6 @@
 import pygame
 from character import Character
+from lifebar import Lifebar
 
 pygame.init()
 
@@ -23,6 +24,8 @@ movestages = {
 
 little_cube = Character(300, 300, 50, 50, "right", movestages, display)
 another_cube = Character(800, 300, 50, 50, "right", movestages, display)
+little_cube_life = Lifebar(display, little_cube, 20, 20)
+another_cube_life = Lifebar(display, another_cube, 700, 20)
 
 characters = [little_cube, another_cube]
 
@@ -79,8 +82,10 @@ while not game_over:
 
 
 
-    display.blit(background_image, [0, 0])
 
+    display.blit(background_image, [0, 0])
+    little_cube_life.show()
+    another_cube_life.show()
     little_cube.show_img()
     another_cube.show_img()
     pygame.display.update()
