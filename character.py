@@ -2,17 +2,23 @@ import pygame
 
 class Character:
 
-    def __init__(self, x, y, width, height, direction, movestages, display, stage='stand', life=100):
+    def __init__(self, x, y,  direction, movestages, display, width=70, height=380, life=100):
         self.x = x
         self.y = y
+        self.width = width
+        self.height = height
+        self.body_width = 55
+        self.from_head_shoulder_level = 105
+        self.arm_length = 130
+        self.arm_height = 5
         self.moves = []
         self.movestages = movestages
-        self.stage = stage
+        self.stage = 'stand'
         self.life = life
         self.direction = direction
-        self.rectbox = pygame.Rect(x, y, width, height)
         self.display = display
         self.in_punch = 0
+        self.opponent = None
 
     def show_img(self):
         if self.direction == 'left':
@@ -57,11 +63,23 @@ class Character:
     def crouch(self):
         pass
 
+
+
     def punch(self):
+        if self.direction == 'right':
+            punch_rect = pygame.Rect(self.x + self.body_width, self.y + self.from_head_shoulder_level,
+                                     self.arm_length, self.arm_height)
+        else:
+            punch_rect = pygame.Rect(self.x, self.y + self.from_head_shoulder_level,
+                                     self.arm_length, self.arm_height)
+        opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_punch <= 0:
             self.in_punch = 10
             self.stage = 'punch'
             self.show_img()
+        if opponent_rectbox.colliderect(punch_rect):
+            self.opponent.life -= 5
+            print("üt")
 
     def block(self):
         pass

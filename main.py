@@ -21,9 +21,10 @@ movestages = {
              }
 
 
-char_1 = Character(20, 20, 50, 50, "right", movestages, display)
-char_2 = Character(100, 100, 50, 50, "right", movestages, display)
-
+char_1 = Character(20, 20, "right", movestages, display)
+char_2 = Character(100, 100, "right", movestages, display)
+char_1.opponent = char_2
+char_2.opponent = char_1
 characters = [char_1, char_2]
 
 #MAIN LOOP
