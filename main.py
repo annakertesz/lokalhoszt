@@ -27,40 +27,36 @@ char_2 = Character(100, 100, "right", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
-#little_cube = Character(300, 300, 50, 50, "right", movestages, display)
-#another_cube = Character(800, 300, 50, 50, "right", movestages, display)
-little_cube_life = Lifebar(display, little_cube, 20, 20)
-another_cube_life = Lifebar(display, another_cube, 700, 20)
 
-characters = [little_cube, another_cube]
+characters = [char_1, char_2]
 
 #MAIN LOOP
 game_over = False
 while not game_over:
-
+    char_1_life = Lifebar(display, char_1, 20, 20)
+    char_2_life = Lifebar(display, char_2, 700, 20)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
-        elif event.type == pygame.KEYDOWN:
-            # move
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                little_cube.moves.append("right")
+                char_1.moves.append("right")
             if event.key == pygame.K_LEFT:
-                little_cube.moves.append("left")
+                char_1.moves.append("left")
             if event.key == pygame.K_d:
-                another_cube.moves.append("right")
+                char_2.moves.append("right")
             if event.key == pygame.K_a:
-                another_cube.moves.append("left")
+                char_2.moves.append("left")
             if event.key == pygame.K_w:
-                if another_cube.in_jump <= 0:
-                    another_cube.in_jump = 50
+                if char_2.in_jump <= 0:
+                    char_2.in_jump = 50
             if event.key == pygame.K_UP:
-                if little_cube.in_jump <= 0:
-                    little_cube.in_jump = 50
+                if char_1.in_jump <= 0:
+                    char_1.in_jump = 50
             if event.key == pygame.K_s:
-                another_cube.crouch_stage = True
+                char_2.crouch_stage = True
             if event.key == pygame.K_DOWN:
-                little_cube.crouch_stage = True
+                char_1.crouch_stage = True
                 # punch
             elif event.key == pygame.K_SPACE:
                 char_2.punch()
@@ -69,19 +65,20 @@ while not game_over:
         # -------------------------
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
-                little_cube.moves.remove("right")
+                char_1.moves.remove("right")
 
             if event.key == pygame.K_LEFT:
-                little_cube.moves.remove("left")
+                char_1.moves.remove("left")
             if event.key == pygame.K_d:
-                another_cube.moves.remove("right")
+                char_2.moves.remove("right")
             if event.key == pygame.K_a:
-                another_cube.moves.remove("left")
+                char_2.moves.remove("left")
             if event.key == pygame.K_s:
-                another_cube.crouch_stage = False
+                char_2.crouch_stage = False
             if event.key == pygame.K_DOWN:
-                little_cube.crouch_stage = False
+                char_1.crouch_stage = False
 
+    print(char_1.stage)
     for character in characters:
         character.jump_step()
         character.crouch()
@@ -92,10 +89,10 @@ while not game_over:
             character.stage = 'stand'
 
     display.blit(background_image, [0, 0])
-    little_cube_life.show()
-    another_cube_life.show()
-    little_cube.show_img()
-    another_cube.show_img()
+    char_1_life.show()
+    char_2_life.show()
+    char_1.show_img()
+    char_2.show_img()
     pygame.display.update()
 
     clock.tick(60)
