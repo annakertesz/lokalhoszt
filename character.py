@@ -1,8 +1,8 @@
 import pygame
 
-class Char:
 
-    def __init__ (self, x, y, width, height, direction, movestages, display, life=100):
+class Character:
+    def __init__(self, x, y, width, height, direction, movestages, display, life=100):
         self.x = x
         self.y = y
         self.moves = []
@@ -37,8 +37,6 @@ class Char:
                 self.y += 10
             else:
                 self.y = 600
-
-
 
 
     def jump(self):

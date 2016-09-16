@@ -1,5 +1,5 @@
 import pygame
-from first_char import Char
+from character import Character
 
 pygame.init()
 
@@ -29,8 +29,6 @@ characters = [little_cube, another_cube]
 #MAIN LOOP
 game_over = False
 while not game_over:
-
-
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
