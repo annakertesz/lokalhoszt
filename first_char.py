@@ -3,11 +3,10 @@ import pygame
 class Char:
 
     def __init__ (self, filename, x, y):
-        self.img = pygame.image.load(filename).convert()
+        self.img = pygame.image.load(filename).convert_alpha()
         self.x = x
         self.y = y
         self.moves = []
-
 
     def show_img(self, parent):
         parent.blit(self.img, (self.x, self.y))
