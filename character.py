@@ -1,5 +1,6 @@
 import pygame
 
+
 class Character:
 
     def __init__(self, x, y,  direction, movestages, display, width=70, height=380, life=100):
@@ -19,7 +20,8 @@ class Character:
         self.display = display
         self.in_jump = 0
         self.crouch_stage = False
-
+        self.in_head = 0
+        self.in_kick = 0
         self.in_punch = 0
         self.opponent = None
 
@@ -51,7 +53,6 @@ class Character:
             else:
                 self.y = 600
 
-
     def jump(self):
 
         if self.in_jump > 20:
@@ -69,10 +70,8 @@ class Character:
         self.jump()
         self.in_jump -= 1
 
-
-
     def crouch(self):
-        if self.crouch_stage == True:
+        if self.crouch_stage is True:
             self.stage = 'crouch'
         # else:
         #     self.stage = 'stand'
@@ -86,18 +85,52 @@ class Character:
                                      self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_punch <= 0:
-            self.in_punch = 10
+            self.in_punch = 30
             self.stage = 'punch'
             self.show_img()
         if opponent_rectbox.colliderect(punch_rect):
-            self.opponent.life -= 5
-            print("üt")
+            self.opponent.life -= 4
 
     def block(self):
         pass
 
     def kick(self):
-        pass
+        if self.direction == 'right':
+            kick_rect = pygame.Rect(self.x + self.body_width, self.y + self.from_head_shoulder_level,
+                                     self.arm_length, self.arm_height)
+        else:
+            kick_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
+                                     self.arm_length, self.arm_height)
+        opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
+        if self.in_kick <= 0:
+            self.in_kick = 20
+            self.stage = 'kick'
+            self.show_img()
+
+        if opponent_rectbox.colliderect(kick_rect):
+            self.opponent.life -= 8
+            x_push = 100
+            if self.direction == 'left':
+                x_push = - 100
+            self.opponent.x += x_push
 
     def head(self):
-        pass
+        if self.direction == 'right':
+            head_rect = pygame.Rect(self.x + self.body_width/2, self.y + self.from_head_shoulder_level-30,
+                                    self.arm_length, self.arm_height)
+        else:
+            head_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
+                                     self.arm_length, self.arm_height)
+        opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
+        if self.in_head <= 0:
+            self.in_head = 10
+            self.stage = 'head'
+            self.show_img()
+
+        if opponent_rectbox.colliderect(head_rect):
+            self.opponent.life -= 8
+            x_push = 100
+            if self.direction == 'left':
+                x_push = - 100
+            self.opponent.x += x_push
+
