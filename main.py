@@ -1,5 +1,5 @@
 import pygame
-from first_char import Char
+from character import Character
 
 pygame.init()
 
@@ -21,8 +21,8 @@ movestages = {
              }
 
 
-little_cube = Char(20, 20, 50, 50, "right", movestages, display)
-another_cube = Char(100, 100, 50, 50, "right", movestages, display)
+little_cube = Character(20, 20, 50, 50, "right", movestages, display)
+another_cube = Character(100, 100, 50, 50, "right", movestages, display)
 
 characters = [little_cube, another_cube]
 
