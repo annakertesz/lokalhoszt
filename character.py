@@ -82,7 +82,7 @@ class Character:
             punch_rect = pygame.Rect(self.x + self.body_width, self.y + self.from_head_shoulder_level,
                                      self.arm_length, self.arm_height)
         else:
-            punch_rect = pygame.Rect(self.x, self.y + self.from_head_shoulder_level,
+            punch_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
                                      self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_punch <= 0:
