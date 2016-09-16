@@ -13,7 +13,6 @@ class Char:
         self.rectbox = pygame.Rect(x, y, width, height)
         self.display = display
 
-
     def show_img(self):
         self.display.blit(self.movestages[self.stage], (self.x, self.y))
 

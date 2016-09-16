@@ -20,6 +20,7 @@ movestages = {
                        'block': pygame.image.load('images/block.png').convert_alpha()
              }
 
+
 little_cube = Char(20, 20, 50, 50, "right", movestages, display)
 another_cube = Char(100, 100, 50, 50, "right", movestages, display)
 
@@ -67,7 +68,6 @@ while not game_over:
                 another_cube.moves.remove("left")
             if event.key == pygame.K_s:
                 another_cube.moves.remove("down")
-
 
     for character in characters:
         for direction in character.moves:
