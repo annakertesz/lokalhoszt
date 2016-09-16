@@ -2,11 +2,10 @@ import pygame
 
 class Char:
 
-
-    def __init__ (self, filename):
+    def __init__ (self, filename, x, y):
         self.img = pygame.image.load(filename).convert()
-        self.x = 20
-        self.y = 20
+        self.x = x
+        self.y = y
         self.moves = []
 
 
@@ -14,11 +13,26 @@ class Char:
         parent.blit(self.img, (self.x, self.y))
 
     def move(self, direction):
+
         if direction == 'up':
-            self.y -= 10
+            if self.y > 30:
+                self.y -= 10
+            else:
+                self.y = 20
+
         if direction == 'right':
-            self.x += 10
+            if self.x < 1000:
+                self.x += 10
+            else:
+                self.x = 1000
+
         if direction == 'left':
-            self.x -= 10
+            if self.x > 30:
+                self.x -= 10
+            else:
+                self.x = 20
         if direction == 'down':
-            self.y += 10
+            if self.y < 600:
+                self.y += 10
+            else:
+                self.y = 600
