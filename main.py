@@ -12,6 +12,7 @@ pygame.mixer.pre_init(44100, 16, 2, 4096)
 pygame.init()
 
 background_image = pygame.image.load("images/background.jpg").convert()
+
 movestages = {
                        'stand': pygame.image.load('images/stand.png').convert_alpha(),
                        'crouch': pygame.image.load('images/crouch.png').convert_alpha(),
@@ -28,6 +29,8 @@ char_2 = Character(100, 100, "right", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
+mixer.music.set_volume(0.6)
+mixer.music.play(-1)
 
 #MAIN LOOP
 game_over = False
