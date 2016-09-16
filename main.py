@@ -62,6 +62,7 @@ while not game_over:
         # PUNCH
             elif event.key == pygame.K_l:
                 char_1.punch()
+<<<<<<< HEAD
             elif event.key == pygame.K_SPACE:
                 char_2.punch()
 
@@ -76,6 +77,12 @@ while not game_over:
             elif event.key == pygame.K_c:
                 char_2.kick()
 
+=======
+            if event.key == pygame.K_m:
+                char_1.block()
+            if event.key == pygame.K_n:
+                char_2.block()
+>>>>>>> origin/block
         # -------------------------
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
@@ -91,8 +98,19 @@ while not game_over:
                 char_2.crouch_stage = False
             if event.key == pygame.K_DOWN:
                 char_1.crouch_stage = False
+            if event.key == pygame.K_m:
+                char_1.block_out()
+            if event.key == pygame.K_n:
+                char_2.block_out()
 
     for character in characters:
+        if character.stage == 'block':
+            if character.blockpower > 200:
+                character.blockpower -= 200
+            else:
+                character.block_out()
+        if character.blockpower < 10000:
+            character.blockpower += 50
         character.jump_step()
         character.crouch()
         for direction in character.moves:

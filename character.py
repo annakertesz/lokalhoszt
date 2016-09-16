@@ -22,6 +22,7 @@ class Character:
         self.crouch_stage = False
         self.in_head = 0
         self.in_kick = 0
+        self.blockpower = 10000
         self.in_punch = 0
         self.opponent = None
 
@@ -65,16 +66,12 @@ class Character:
     def jump_step(self):
         if self.y < 400:
             self.stage = 'jump'
-        # else:
-        #     self.stage = 'stand'
         self.jump()
         self.in_jump -= 1
 
     def crouch(self):
         if self.crouch_stage is True:
             self.stage = 'crouch'
-        # else:
-        #     self.stage = 'stand'
 
     def punch(self):
         if self.direction == 'right':
@@ -90,17 +87,22 @@ class Character:
             self.show_img()
         if opponent_rectbox.colliderect(punch_rect):
             self.opponent.life -= 4
+            if self.opponent.stage != 'block':
+                self.opponent.life -= 2
 
     def block(self):
-        pass
+        self.stage = 'block'
+
+    def block_out(self):
+        self.stage = 'stand'
 
     def kick(self):
         if self.direction == 'right':
             kick_rect = pygame.Rect(self.x + self.body_width, self.y + self.from_head_shoulder_level,
-                                     self.arm_length, self.arm_height)
+                                    self.arm_length, self.arm_height)
         else:
             kick_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
-                                     self.arm_length, self.arm_height)
+                                    self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_kick <= 0:
             self.in_kick = 20
@@ -120,7 +122,7 @@ class Character:
                                     self.arm_length, self.arm_height)
         else:
             head_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
-                                     self.arm_length, self.arm_height)
+                                    self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if self.in_head <= 0:
             self.in_head = 10
