@@ -29,7 +29,7 @@ char_2 = Character(100, 100, "right", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
-mixer.music.set_volume(0.6)
+mixer.music.set_volume(0.4)
 mixer.music.play(-1)
 
 #MAIN LOOP
