@@ -19,7 +19,7 @@ class Character:
         self.display = display
         self.in_jump = 0
         self.crouch_stage = False
-
+        self.blockpower = 10000
         self.in_punch = 0
         self.opponent = None
 
@@ -90,11 +90,14 @@ class Character:
             self.stage = 'punch'
             self.show_img()
         if opponent_rectbox.colliderect(punch_rect):
-            self.opponent.life -= 5
-            print("üt")
+            if self.opponent.stage != 'block':
+                self.opponent.life -= 5
 
     def block(self):
-        pass
+        self.stage = 'block'
+
+    def block_out(self):
+        self.stage = 'stand'
 
     def kick(self):
         pass

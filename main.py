@@ -33,7 +33,7 @@ characters = [char_1, char_2]
 #MAIN LOOP
 game_over = False
 while not game_over:
-    game_over = char_1.life <= 0 and char_2.life <= 0
+    game_over = char_1.life <= 0 or char_2.life <= 0
     char_1_life = Lifebar(display, char_1, 20, 20)
     char_2_life = Lifebar(display, char_2, 700, 20)
     for event in pygame.event.get():
@@ -63,6 +63,10 @@ while not game_over:
                 char_2.punch()
             elif event.key == pygame.K_l:
                 char_1.punch()
+            if event.key == pygame.K_m:
+                char_1.block()
+            if event.key == pygame.K_n:
+                char_2.block()
         # -------------------------
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
@@ -78,9 +82,19 @@ while not game_over:
                 char_2.crouch_stage = False
             if event.key == pygame.K_DOWN:
                 char_1.crouch_stage = False
+            if event.key == pygame.K_m:
+                char_1.block_out()
+            if event.key == pygame.K_n:
+                char_2.block_out()
 
-    print(char_1.stage)
     for character in characters:
+        if character.stage == 'block':
+            if character.blockpower > 200:
+                character.blockpower -= 200
+            else:
+                character.block_out()
+        if character.blockpower < 10000:
+            character.blockpower += 50
         character.jump_step()
         character.crouch()
         for direction in character.moves:
