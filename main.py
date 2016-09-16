@@ -21,14 +21,12 @@ while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
+        if event.type == pygame.KEYDOWN:
+            little_cube.move()
 
-    little_cube.move()
+
     display.blit(background_image, [0, 0])
 
-
-
-
-    #background
 
     little_cube.show_img(display)
     pygame.display.update()
