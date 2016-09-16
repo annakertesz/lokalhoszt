@@ -62,7 +62,6 @@ while not game_over:
         # PUNCH
             elif event.key == pygame.K_l:
                 char_1.punch()
-<<<<<<< HEAD
             elif event.key == pygame.K_SPACE:
                 char_2.punch()
 
@@ -77,12 +76,10 @@ while not game_over:
             elif event.key == pygame.K_c:
                 char_2.kick()
 
-=======
             if event.key == pygame.K_m:
                 char_1.block()
             if event.key == pygame.K_n:
                 char_2.block()
->>>>>>> origin/block
         # -------------------------
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
