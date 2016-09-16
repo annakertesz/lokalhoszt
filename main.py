@@ -12,8 +12,8 @@ clock = pygame.time.Clock()
 
 background_image = pygame.image.load("images/background.jpg").convert()
 
-little_cube = Char('images/littlecube.png', 20, 20)
-another_cube = Char('images/littlecube.png', 50, 50)
+little_cube = Char('images/stand.png', 20, 20)
+another_cube = Char('images/stand.png', 50, 50)
 
 characters = [little_cube, another_cube]
 
@@ -59,7 +59,6 @@ while not game_over:
                 another_cube.moves.remove("left")
             if event.key == pygame.K_s:
                 another_cube.moves.remove("down")
-
 
     for character in characters:
         for direction in character.moves:

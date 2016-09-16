@@ -22,7 +22,6 @@ class Char:
         self.movestages = movestages
         self.rectbox = rectbox
 
-
     def show_img(self, parent):
         parent.blit(self.stages[self.stage], (self.x, self.y))
 
