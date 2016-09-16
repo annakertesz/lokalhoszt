@@ -75,12 +75,12 @@ while not game_over:
                 char_1.kick()
             elif event.key == pygame.K_c:
                 char_2.kick()
-
+        #BLOCK
             if event.key == pygame.K_m:
                 char_1.block()
             if event.key == pygame.K_n:
                 char_2.block()
-        # -------------------------
+        # -------------------------------------
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
                 char_1.moves.remove("right")
