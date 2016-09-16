@@ -50,6 +50,10 @@ while not game_over:
             if event.key == pygame.K_UP:
                 if little_cube.in_jump <= 0:
                     little_cube.in_jump = 50
+            if event.key == pygame.K_s:
+                another_cube.crouch_stage = True
+            if event.key == pygame.K_DOWN:
+                little_cube.crouch_stage = True
         # -------------------------
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
@@ -61,9 +65,14 @@ while not game_over:
                 another_cube.moves.remove("right")
             if event.key == pygame.K_a:
                 another_cube.moves.remove("left")
+            if event.key == pygame.K_s:
+                another_cube.crouch_stage = False
+            if event.key == pygame.K_DOWN:
+                little_cube.crouch_stage = False
 
     for character in characters:
         character.jump_step()
+        character.crouch()
         for direction in character.moves:
             character.move(direction)
 

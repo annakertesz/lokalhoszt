@@ -13,6 +13,8 @@ class Char:
         self.rectbox = pygame.Rect(x, y, width, height)
         self.display = display
         self.in_jump = 0
+        self.crouch_stage = False
+
 
     def show_img(self):
         self.display.blit(self.movestages[self.stage], (self.x, self.y))
@@ -59,7 +61,10 @@ class Char:
 
 
     def crouch(self):
-        pass
+        if self.crouch_stage == True:
+            self.stage = 'crouch'
+        else:
+            self.stage = 'stand'
 
     def punch(self):
         pass
