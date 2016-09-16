@@ -124,7 +124,7 @@ class Character:
             elif self.opponent.direction == self.direction:
                 self.opponent.life -= 11
         else:
-            sound['empty_kick'].play()
+            sound['kick_empty'].play()
 
     def head(self):
         if self.direction == 'right':
