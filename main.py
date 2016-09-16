@@ -63,12 +63,7 @@ while not game_over:
                 another_cube.moves.remove("left")
 
     for character in characters:
-        if character.y < 400:
-            character.stage = 'jump'
-        else:
-            character.stage = 'stand'
-        character.jump()
-        character.in_jump -= 1
+        character.jump_step()
         for direction in character.moves:
             character.move(direction)
 

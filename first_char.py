@@ -48,6 +48,14 @@ class Char:
         elif self.y == 400:
             self.stage = 'stand'
 
+    def jump_step(self):
+        if self.y < 400:
+            self.stage = 'jump'
+        else:
+            self.stage = 'stand'
+        self.jump()
+        self.in_jump -= 1
+
 
 
     def crouch(self):
