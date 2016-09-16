@@ -98,6 +98,7 @@ while not game_over:
     char_1.show_img()
     char_2.show_img()
     pygame.display.update()
+    game_over = char_1.life <= 0 or char_2.life <= 0
 
     clock.tick(60)
 
