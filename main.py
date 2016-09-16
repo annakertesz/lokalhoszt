@@ -109,7 +109,7 @@ while on:
                 if event.key == pygame.K_n:
                     char_2.block()
                 if event.key == pygame.K_y:
-                    random.choice[characters].life = 100
+                    random.choice(characters).life = 100
             # -------------------------
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
