@@ -42,10 +42,15 @@ on = True
 # display.blit(story_3, [0, 0])
 # clock.tick(1000)
 while on:
+
     game_over = False
     char_1.life = 100
     char_2.life = 100
     while not game_over:
+        char_1.checking_overlaping()
+        char_2.checking_overlaping()
+        char_1.space_limit()
+        char_2.space_limit()
         game_over = char_1.life <= 0 or char_2.life <= 0
         if game_over:
             if char_1.life < 1:
@@ -59,6 +64,7 @@ while on:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
+                on = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     char_1.moves.append("right")
