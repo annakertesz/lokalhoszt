@@ -85,7 +85,11 @@ while not game_over:
         for direction in character.moves:
             character.move(direction)
         character.in_punch -= 1
-        if character.in_punch <= 0:
+        if character.in_punch <= 0 and character.stage == 'punch':
+            character.stage = 'stand'
+        if character.crouch_stage == False and character.stage == 'crouch':
+            character.stage = 'stand'
+        if character.in_jump <= 0 and character.stage == 'jump':
             character.stage = 'stand'
 
     display.blit(background_image, [0, 0])
