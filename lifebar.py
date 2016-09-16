@@ -8,7 +8,6 @@ class Lifebar:
         self.life = char.life
         self.display = display
 
-    def show(self):
 
         if self.life > 90:
             self.display.blit(pygame.image.load('images/lifebar_10.png').convert_alpha(), (self.x, self.y))
