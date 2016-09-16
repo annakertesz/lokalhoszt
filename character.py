@@ -86,9 +86,10 @@ class Character:
             self.stage = 'punch'
             self.show_img()
         if opponent_rectbox.colliderect(punch_rect):
-            self.opponent.life -= 4
             if self.opponent.stage != 'block':
-                self.opponent.life -= 2
+                self.opponent.life -= 11
+            elif self.opponent.direction == self.direction:
+                self.opponent.life -= 11
 
     def block(self):
         self.stage = 'block'
@@ -110,11 +111,10 @@ class Character:
             self.show_img()
 
         if opponent_rectbox.colliderect(kick_rect):
-            self.opponent.life -= 8
-            x_push = 100
-            if self.direction == 'left':
-                x_push = - 100
-            self.opponent.x += x_push
+            if self.opponent.stage != 'block':
+                self.opponent.life -= 11
+            elif self.opponent.direction == self.direction:
+                self.opponent.life -= 11
 
     def head(self):
         if self.direction == 'right':
@@ -130,9 +130,11 @@ class Character:
             self.show_img()
 
         if opponent_rectbox.colliderect(head_rect):
-            self.opponent.life -= 8
             x_push = 100
             if self.direction == 'left':
                 x_push = - 100
             self.opponent.x += x_push
-
+            if self.opponent.stage != 'block':
+                self.opponent.life -= 11
+            elif self.opponent.direction == self.direction:
+                self.opponent.life -= 11
