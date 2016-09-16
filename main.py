@@ -36,6 +36,12 @@ characters = [char_1, char_2]
 characters = [char_1, char_2]
 
 on = True
+display.blit(story_1, [0, 0])
+clock.tick(1000)
+display.blit(story_2, [0, 0])
+clock.tick(1000)
+display.blit(story_3, [0, 0])
+clock.tick(1000)
 while on:
     game_over = False
     char_1.life = 100

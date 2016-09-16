@@ -121,7 +121,6 @@ class Character:
             self.in_kick = 20
             self.stage = 'kick'
             self.show_img()
-
             if opponent_rectbox.colliderect(kick_rect):
                 dmg = random.randint(1, 99)
                 if self.opponent.stage != 'block':
@@ -137,6 +136,7 @@ class Character:
                     x_push = - x_push
             else:
                 sound['empty_kick'].play()
+
 
     def head(self):
         if self.direction == 'right':
