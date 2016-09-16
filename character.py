@@ -2,7 +2,6 @@ import pygame
 
 
 class Character:
-
     def __init__(self, x, y, width, height, direction, movestages, display, life=100):
         self.x = x
         self.y = y
