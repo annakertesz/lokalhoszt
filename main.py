@@ -1,5 +1,5 @@
 import pygame
-from character import Character
+from character import *
 from lifebar import Lifebar
 from pygame.locals import *
 from sounds import *
@@ -9,7 +9,9 @@ pygame.init()
 
 
 #main settings
-display = pygame.display.set_mode((1280, 1024))
+
+display = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+print(infoObject.current_w, infoObject.current_h)
 pygame.display.set_caption('localhost')
 pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
@@ -29,8 +31,8 @@ movestages = {
              }
 
 
-char_1 = Character(100, 20, "right", movestages, display)
-char_2 = Character(500, 20, "right", movestages, display)
+char_1 = Character(0 , infoObject.current_h - 600, "right", movestages, display)
+char_2 = Character(infoObject.current_w - 250, infoObject.current_h - 600, "left", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
@@ -76,10 +78,13 @@ while on:
             if char_1.won == 3 or char_2.won == 3:
                 on = False
         char_1_life = Lifebar(display, char_1, 20, 20)
-        char_2_life = Lifebar(display, char_2, 700, 20)
+        char_2_life = Lifebar(display, char_2, infoObject.current_h + 250, 20)
     # JOYSTICK INPUT
 
         for event in pygame.event.get():
+
+        # JOYSTICK INPUT
+        try:
             if event.type == pygame.locals.JOYAXISMOTION:
                 player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
                 player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
@@ -210,7 +215,7 @@ while on:
             if character.in_kick <= 0 and character.stage == 'kick':
                 character.stage = 'stand'
 
-        display.blit(background_image, [0, 0])
+        display.blit(pygame.transform.scale(background_image, (infoObject.current_w, infoObject.current_h)),(0, 0))
         char_1_life.show()
         char_2_life.show()
         char_1.show_img()

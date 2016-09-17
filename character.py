@@ -2,6 +2,8 @@ import pygame
 import random
 from sounds import *
 
+pygame.init()
+infoObject = pygame.display.Info()
 
 class Character:
 
@@ -32,9 +34,17 @@ class Character:
 
     def show_img(self):
         if self.direction == 'left':
-            self.display.blit(pygame.transform.flip(self.movestages[self.stage], True, False), (self.x, self.y))
+            if self.stage == 'crouch':
+                self.display.blit(pygame.transform.flip(self.movestages[self.stage], True, False), (self.x,
+                                                                                                    self.y + 50))
+            else:
+                self.display.blit(pygame.transform.flip(self.movestages[self.stage], True, False), (self.x,
+                                                                                                    self.y - 50))
         else:
-            self.display.blit(self.movestages[self.stage], (self.x, self.y))
+            if self.stage == 'crouch':
+                self.display.blit(self.movestages[self.stage], (self.x, self.y + 50))
+            else:
+                self.display.blit(self.movestages[self.stage], (self.x, self.y - 50))
 
     def checking_overlaping(self):
         body_rect = pygame.Rect(self.x, self.y, self.width, self.height)
@@ -46,12 +56,10 @@ class Character:
                 self.opponent.x += 11
 
     def space_limit(self):
-        if self.x > 1000:
-            self.x = 1000
+        if self.x > infoObject.current_w - 250:
+            self.x = infoObject.current_w - 250
         elif self.x < 0:
             self.x = 0
-        if self.y > 600:
-            self.y = 600
         elif self.y < 0:
             self.y = 0
 
@@ -62,12 +70,6 @@ class Character:
         elif direction == 'left':
             self.x -= 10
             self.direction = 'left'
-
-        if direction == 'down':
-            if self.y < 600:
-                self.y += 10
-            else:
-                self.y = 600
 
     def jump(self):
         if self.in_jump > 20:
