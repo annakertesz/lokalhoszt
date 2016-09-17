@@ -63,7 +63,7 @@ while on:
     char_1.life = 100
     char_2.life = 100
     while not game_over:
-        print('num of joysticks', len(pygame.joystick.get_count()))
+        print('num of joysticks', pygame.joystick.get_count())
         char_1.checking_overlaping()
         char_2.checking_overlaping()
         char_1.space_limit()
