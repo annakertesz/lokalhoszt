@@ -82,24 +82,16 @@ while on:
         if char_1.joystick is not None and char_2.joystick is not None:
             for event in pygame.event.get():
                 if event.type == pygame.locals.JOYAXISMOTION:
-                    player1jx = char_1.joystick.get_axis(0)
-                    player1jy = char_1.joystick.get_axis(1)
-                    print(player1jx)
+                    player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
+                    player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
                     if player1jx < 0:
-                        print('balra')
                         char_1.moves.append("left")
                     elif player1jx > 0:
-                        print('jobbra')
                         char_1.moves.append("right")
-                    if player1jy < 0:
-
-                        if char_1.in_jump <= 0:
-                            char_1.in_jump = 50
+                    if char_1.in_jump <= 0:
+                        char_1.in_jump = 50
                     elif player1jy > 0:
                         char_1.crouch_stage = True
-
-                    player2jx = char_2.joystick.get_axis(0)
-                    player2jy = char_2.joystick.get_axis(1)
                     if player2jx < 0:
                         char_2.moves.append("left")
                     elif player2jx > 0:
@@ -109,22 +101,22 @@ while on:
                             char_2.in_jump = 50
                     elif player2jy > 0:
                         char_2.crouch_stage = True
-                elif player1_joystick.get_button(0):
-                    char_1.punch()
-                elif player2_joystick.get_button(0):
-                    char_2.punch()
-                elif player1_joystick.get_button(1):
-                    char_1.head()
-                elif player2_joystick.get_button(1):
-                    char_2.head()
-                elif player1_joystick.get_button(2):
-                    char_1.kick()
-                elif player2_joystick.get_button(2):
-                    char_2.kick()
-                elif player1_joystick.get_button(3):
-                    char_1.block()
-                elif player2_joystick.get_button(3):
-                    char_2.block()
+            if player1_joystick.get_button(0):
+                char_1.punch()
+            elif player2_joystick.get_button(0):
+                char_2.punch()
+            elif player1_joystick.get_button(1):
+                char_1.head()
+            elif player2_joystick.get_button(1):
+                char_2.head()
+            elif player1_joystick.get_button(2):
+                char_1.kick()
+            elif player2_joystick.get_button(2):
+                char_2.kick()
+            elif player1_joystick.get_button(3):
+                char_1.block()
+            elif player2_joystick.get_button(3):
+                char_2.block()
         # # KEYBOARD INPUT
         # else:
         #     for event in pygame.event.get():
