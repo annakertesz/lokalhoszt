@@ -13,6 +13,6 @@ except IndexError:
     joystick = None
     joystick = None
 while True:
-    player1jx = joystick.get_axis(0)
-    player1jy = joystick.get_axis(1)
+    player1jx = joystick1.get_axis(0)
+    player1jy = joystick2.get_axis(1)
     print(player1jx, player1jy)
