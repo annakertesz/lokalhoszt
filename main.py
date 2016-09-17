@@ -1,5 +1,5 @@
 import pygame
-from character import Character
+from character import *
 from lifebar import Lifebar
 from sounds import *
 import random
@@ -8,7 +8,7 @@ pygame.init()
 
 
 #main settings
-infoObject = pygame.display.Info()
+
 display = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
 print(infoObject.current_w, infoObject.current_h)
 pygame.display.set_caption('localhost')
@@ -30,8 +30,8 @@ movestages = {
              }
 
 
-char_1 = Character(0 , infoObject.current_h - 400, "right", movestages, display)
-char_2 = Character(infoObject.current_w - 150, infoObject.current_h - 400, "left", movestages, display)
+char_1 = Character(0 , infoObject.current_h - 600, "right", movestages, display)
+char_2 = Character(infoObject.current_w - 250, infoObject.current_h - 600, "left", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
