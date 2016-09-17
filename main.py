@@ -20,6 +20,7 @@ pygame.mixer.pre_init(44100, 16, 2, 4096)
 pygame.init()
 
 background_image = pygame.image.load("images/background.png").convert()
+blood = pygame.image.load("images/blood.png").convert_alpha()
 
 movestages = {
                        'stand': pygame.image.load('images/stand.png').convert_alpha(),
@@ -93,6 +94,7 @@ while on:
     char_1.stage = "stand"
 
     while not game_over:
+        before_life = char_1.life + char_2.life
         char_1.checking_overlaping()
         char_2.checking_overlaping()
         char_1.space_limit()
@@ -261,11 +263,20 @@ while on:
             if character.in_kick <= 0 and character.stage == 'kick':
                 character.stage = 'stand'
 
+        after_life = char_1.life + char_2.life
+
+        if before_life > afterlife:
+            BloodPatternHandler()
+
         display.blit(pygame.transform.scale(background_image, (infoObject.current_w, infoObject.current_h)),(0, 0))
         char_1_life.show()
         char_2_life.show()
         char_1.show_img()
         char_2.show_img()
+        for pattern in BloodPatternHandler.patterns:
+            pattern.remaining_time -= 1
+            if pattern.remaining_time > 0:
+                display.blit(pygame.transform.scale(blood, pattern.coordinates))
         pygame.display.update()
         clock.tick(60)
 
