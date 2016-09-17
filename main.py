@@ -291,6 +291,6 @@ elif char_2.won == 3:
     display.blit(pygame.image.load("images/redwon.png").convert(), [0, 0])
 pygame.display.update()
 
-pygame.time.wait(4000)
+pygame.time.wait(5000)
 
 pygame.quit()
