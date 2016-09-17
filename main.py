@@ -1,7 +1,7 @@
 import pygame
 from character import Character
 from lifebar import Lifebar
-import pygame.locals
+from pygame.locals import *
 from sounds import *
 import random
 
@@ -36,21 +36,18 @@ char_2.opponent = char_1
 characters = [char_1, char_2]
 # JOYSTICK
 try:
-
     pygame.joystick.init()
     joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
     joysticks[0].init()
     joysticks[1].init()
     player1_joystick = joysticks[0]
     player2_joystick = joysticks[1]
-    char_1.joystick = player1_joystick
-    char_2.joystick = player2_joystick
 except IndexError:
-    char_1.joystick = None
-    char_2.joystick = None
+    player1_joystick = None
+    player2_joystick = None
 
 mixer.music.set_volume(0.4)
-mixer.music.play(-1)
+# mixer.music.play(-1)
 
 
 on = True
@@ -113,6 +110,8 @@ while on:
                             char_2.in_jump = 50
                     elif player2jy > 0:
                         char_2.crouch_stage = True
+                elif event.type == pygame.JOYBUTTONDOWN:
+                    
         # KEYBOARD INPUT
         else:
             for event in pygame.event.get():
