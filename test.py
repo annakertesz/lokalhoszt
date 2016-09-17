@@ -3,7 +3,7 @@ from pygame import *
 try:
 
     joystick.init()
-    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+    joysticks = [joystick.Joystick(x) for x in range(joystick.get_count())]
     joysticks[0].init()
     joysticks[1].init()
     joystick1 = joysticks[0]
