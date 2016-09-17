@@ -81,7 +81,7 @@ while on:
 
         if char_1.joystick is not None and char_2.joystick is not None:
             print(' átjutott az if-en')
-            player1jx, player1jy = char_1.joystick.get_axis(0), char_2.joystick.get_axis(1)
+            player1jx, player1jy = char_1.joystick.get_axis(0), char_1.joystick.get_axis(1)
             print('tovább is ment')
             print(player1jx)
             if player1jx < 0:
