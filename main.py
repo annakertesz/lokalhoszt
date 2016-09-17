@@ -36,18 +36,18 @@ characters = [char_1, char_2]
 # JOYSTICK
 #try:
 
-    pygame.joystick.init()
-    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-    joysticks[0].init()
-    joysticks[1].init()
-    char_1.joystick = joysticks[0]
-    char_2.joystick = joysticks[1]
-    print('sikerült megcsinálni')
+pygame.joystick.init()
+joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+joysticks[0].init()
+joysticks[1].init()
+char_1.joystick = joysticks[0]
+char_2.joystick = joysticks[1]
+print('sikerült megcsinálni')
 # except IndexError:
 #     char_1.joystick = None
 #     char_2.joystick = None
-    mixer.music.set_volume(0.4)
-    mixer.music.play(-1)
+mixer.music.set_volume(0.4)
+mixer.music.play(-1)
 
 
 on = True
