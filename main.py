@@ -41,9 +41,10 @@ try:
     joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
     joysticks[0].init()
     joysticks[1].init()
-    char_1.joystick = joysticks[0]
-    char_2.joystick = joysticks[1]
-    print('sikerült megcsinálni')
+    player1_joystick = joysticks[0]
+    player2_joystick = joysticks[1]
+    char_1.joystick = player1_joystick
+    char_2.joystick = player2_joystick
 except IndexError:
     char_1.joystick = None
     char_2.joystick = None
