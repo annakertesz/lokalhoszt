@@ -92,11 +92,10 @@ while on:
                         print('jobbra')
                         char_1.moves.append("right")
                     if player1jy < 0:
-                        print('ugrás')
+
                         if char_1.in_jump <= 0:
                             char_1.in_jump = 50
                     elif player1jy > 0:
-                        print('guggolás')
                         char_1.crouch_stage = True
 
                     player2jx = char_2.joystick.get_axis(0)
