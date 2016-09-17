@@ -1,18 +1,30 @@
-from pygame import *
+import pygame
+from pygame.locals import *
+
+pygame.init()
 
 try:
-
-    joystick.init()
-    joysticks = [joystick.Joystick(x) for x in range(joystick.get_count())]
-    joysticks[0].init()
-    joysticks[1].init()
-    joystick1 = joysticks[0]
-    joystick2 = joysticks[1]
-    print('sikerült megcsinálni')
+   pygame.joystick.init()
+   joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+   joysticks[0].init()
+   joysticks[1].init()
+   player1_joystick = joysticks[0]
+   player2_joystick = joysticks[1]
 except IndexError:
-    joystick = None
-    joystick = None
+   player1_joystick = None
+   player2_joystick = None
+
 while True:
-    player1jx = joystick1.get_axis(0)
-    player1jy = joystick2.get_axis(1)
-    print(player1jx, player1jy)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            quit()
+        elif event.type == pygame.locals.JOYAXISMOTION:
+            player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
+            if player1jx < 0:
+                print("left")
+            if player1jx > 0:
+                print("right")
+            if player1jy < 0:
+                print("up")
+            if player1jy > 0:
+                print("down")
