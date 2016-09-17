@@ -76,7 +76,7 @@ while on:
             if char_1.won == 3 or char_2.won == 3:
                 on = False
         char_1_life = Lifebar(display, char_1, 20, 20)
-        char_2_life = Lifebar(display, char_2, infoObject.current_h + 200, 20)
+        char_2_life = Lifebar(display, char_2, infoObject.current_h + 250, 20)
         # JOYSTICK INPUT
         try:
             if event.type == pygame.locals.JOYAXISMOTION:
@@ -196,7 +196,7 @@ while on:
             if character.in_kick <= 0 and character.stage == 'kick':
                 character.stage = 'stand'
 
-        display.blit(background_image, [0, 0])
+        display.blit(pygame.transform.scale(background_image, (infoObject.current_w, infoObject.current_h)),(0, 0))
         char_1_life.show()
         char_2_life.show()
         char_1.show_img()
