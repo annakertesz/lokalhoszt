@@ -80,7 +80,7 @@ while on:
         char_2_life = Lifebar(display, char_2, 700, 20)
         # JOYSTICK INPUT
         try:
-            if event.type == pygame.locals.JOYAXISMOTION:
+            if event.type == pygame.JOYAXISMOTION:
                 print('joystick', event.type)
                 player1jx, player1jy = char_1.joystick.get_axis(0), char_2.joystick.get_axis(1)
                 if player1jx < 0:
