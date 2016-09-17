@@ -85,6 +85,12 @@ while on:
     game_over = False
     char_1.life = 100
     char_2.life = 100
+    char_1.x = 200
+    char_2.x = 800
+    char_1.y = 500
+    char_2.y = 500
+    char_2.stage = "stand"
+    char_1.stage = "stand"
 
     while not game_over:
         char_1.checking_overlaping()
@@ -95,12 +101,12 @@ while on:
         if game_over:
             if char_1.life < 1:
                 char_2.won += 1
-                display.blit(pygame.image.load("images/blue.png").convert(), [540, 30])
+                display.blit(pygame.image.load("images/red.png").convert(), [540, 30])
                 pygame.display.update()
                 pygame.time.wait(1000)
             if char_2.life < 1:
                 char_1.won += 1
-                display.blit(pygame.image.load("images/red.png").convert(), [540, 30])
+                display.blit(pygame.image.load("images/blue.png").convert(), [540, 30])
                 pygame.display.update()
                 pygame.time.wait(1000)
             if char_1.won == 3 or char_2.won == 3:
@@ -122,14 +128,17 @@ while on:
                     char_1.x += 10
                     char_1.direction = 'right'
                 if player1jy < 0:
-                    char_1.crouch_stage = False
                     if char_1.in_jump <= 0:
                         char_1.in_jump = 50
                 elif player1jy > 0:
                     char_1.crouch_stage = True
+                elif player1jy == 0:
+                    char_1.crouch_stage = False
                 if player2jx < 0:
                     char_2.x -= 10
                     char_2.direction = 'left'
+                elif player2jy == 0:
+                    char_2.crouch_stage = False
                 elif player2jx > 0:
                     char_2.x += 10
                     char_2.direction = 'right'
