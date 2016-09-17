@@ -192,7 +192,8 @@ while on:
         #                 char_1.block_out()
         #             elif event.key == pygame.K_n:
         #                 char_2.block_out()
-
+        print(char_1.direction, 'char1')
+        print(char_2.direction, 'char2')
         for character in characters:
             if character.stage == 'block':
                 if character.blockpower > 200:
