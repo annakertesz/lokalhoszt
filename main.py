@@ -13,7 +13,7 @@ pygame.init()
 
 #main settings
 
-display = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+display = pygame.display.set_mode((1280, 1024), pygame.FULLSCREEN)
 print(infoObject.current_w, infoObject.current_h)
 pygame.display.set_caption('localhost')
 pygame.mouse.set_visible(False)
@@ -105,12 +105,12 @@ while on:
         if game_over:
             if char_1.life < 1:
                 char_2.won += 1
-                display.blit(pygame.image.load("images/red.png").convert(), [540, 30])
+                display.blit(pygame.image.load("images/red.png").convert_alpha(), [540, 30])
                 pygame.display.update()
                 pygame.time.wait(1000)
             if char_2.life < 1:
                 char_1.won += 1
-                display.blit(pygame.image.load("images/blue.png").convert(), [540, 30])
+                display.blit(pygame.image.load("images/blue.png").convert_alpha(), [540, 30])
                 pygame.display.update()
                 pygame.time.wait(1000)
             if char_1.won == 3 or char_2.won == 3:
@@ -172,10 +172,11 @@ while on:
             sys.exit()
         # # KEYBOARD INPUT
         # else:
-        #     for event in pygame.event.get():
-        #         if event.type == pygame.QUIT:
-        #             game_over = True
-        #             on = False
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    game_over = True
+                    on = False
         #         if event.type == pygame.KEYDOWN:
         #             if event.key == pygame.K_RIGHT:
         #                 char_1.moves.append("right")
@@ -278,7 +279,7 @@ while on:
         char_1.show_img()
         char_2.show_img()
         for pattern in BloodPatternHandler.patterns:
-            pattern.remaining_time -= 1
+            pattern.remaining_time -= 100
             if pattern.remaining_time > 0:
                 display.blit(blood, pattern.coordinates)
         pygame.display.update()
