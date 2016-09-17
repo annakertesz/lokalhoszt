@@ -42,6 +42,7 @@ try:
     joysticks[1].init()
     char_1.joystick = joysticks[0]
     char_2.joystick = joysticks[1]
+    print('sikerült megcsinálni')
 except IndexError:
     char_1.joystick = None
     char_2.joystick = None
@@ -79,15 +80,20 @@ while on:
     # JOYSTICK INPUT
 
         if char_1.joystick is not None and char_2.joystick is not None:
+            print(' átjutott az if-en')
             player1jx, player1jy = char_1.joystick.get_axis(0), char_2.joystick.get_axis(1)
             if player1jx < 0:
+                print('balra')
                 char_1.moves.append("left")
             elif player1jx > 0:
+                print('jobbra')
                 char_1.moves.append("right")
             if player1jy < 0:
+                print('ugrás')
                 if char_1.in_jump <= 0:
                     char_1.in_jump = 50
             elif player1jy > 0:
+                print('guggolás')
                 char_1.crouch_stage = True
 
             player2jx, player2jy = char_2.joystick.get_axis(0), char_2.joystick.get_axis(1)
