@@ -77,8 +77,8 @@ while on:
                 char_1.won += 1
             if char_1.won == 3 or char_2.won == 3:
                 on = False
-        char_1_life = Lifebar(display, char_1, 20, 20)
-        char_2_life = Lifebar(display, char_2, infoObject.current_h + 250, 20)
+        char_1_life = Lifebar(display, char_1, 250, 20)
+        char_2_life = Lifebar(display, char_2, infoObject.current_h + 20, 20)
     # JOYSTICK INPUT
 
         for event in pygame.event.get():
