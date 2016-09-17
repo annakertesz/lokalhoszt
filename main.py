@@ -84,7 +84,6 @@ while on:
         for event in pygame.event.get():
 
         # JOYSTICK INPUT
-        try:
             if event.type == pygame.locals.JOYAXISMOTION:
                 player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
                 player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
@@ -92,8 +91,9 @@ while on:
                     char_1.moves.append("left")
                 elif player1jx > 0:
                     char_1.moves.append("right")
-                if char_1.in_jump <= 0:
-                    char_1.in_jump = 50
+                if player1jy < 0:
+                    if char_1.in_jump <= 0:
+                        char_1.in_jump = 50
                 elif player1jy > 0:
                     char_1.crouch_stage = True
                 if player2jx < 0:
