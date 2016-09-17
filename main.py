@@ -8,7 +8,9 @@ pygame.init()
 
 
 #main settings
-display = pygame.display.set_mode((1280, 1024))
+infoObject = pygame.display.Info()
+display = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+print(infoObject.current_w, infoObject.current_h)
 pygame.display.set_caption('localhost')
 pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
@@ -28,8 +30,8 @@ movestages = {
              }
 
 
-char_1 = Character(100, 20, "right", movestages, display)
-char_2 = Character(500, 20, "right", movestages, display)
+char_1 = Character(0 , infoObject.current_h - 400, "right", movestages, display)
+char_2 = Character(infoObject.current_w - 150, infoObject.current_h - 400, "left", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
@@ -74,7 +76,7 @@ while on:
             if char_1.won == 3 or char_2.won == 3:
                 on = False
         char_1_life = Lifebar(display, char_1, 20, 20)
-        char_2_life = Lifebar(display, char_2, 700, 20)
+        char_2_life = Lifebar(display, char_2, infoObject.current_h + 200, 20)
         # JOYSTICK INPUT
         try:
             if event.type == pygame.locals.JOYAXISMOTION:

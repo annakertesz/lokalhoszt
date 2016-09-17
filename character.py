@@ -32,9 +32,17 @@ class Character:
 
     def show_img(self):
         if self.direction == 'left':
-            self.display.blit(pygame.transform.flip(self.movestages[self.stage], True, False), (self.x, self.y))
+            if self.stage == 'crouch':
+                self.display.blit(pygame.transform.flip(self.movestages[self.stage], True, False), (self.x,
+                                                                                                    self.y + 100))
+            else:
+                self.display.blit(pygame.transform.flip(self.movestages[self.stage], True, False), (self.x,
+                                                                                                    self.y))
         else:
-            self.display.blit(self.movestages[self.stage], (self.x, self.y))
+            if self.stage == 'crouch':
+                self.display.blit(self.movestages[self.stage], (self.x, self.y + 100))
+            else:
+                self.display.blit(self.movestages[self.stage], (self.x, self.y))
 
     def checking_overlaping(self):
         body_rect = pygame.Rect(self.x, self.y, self.width, self.height)
