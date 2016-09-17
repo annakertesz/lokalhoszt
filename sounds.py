@@ -1,5 +1,6 @@
 from pygame import *
 mixer.init()
+
 soundtrack = mixer.music.load('sounds/newsoundtrack.wav')
 intro_music = mixer.music.load('sounds/bensound-retrosoul.wav')
 sound = {
