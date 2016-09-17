@@ -28,4 +28,4 @@ while True:
                 print("up")
             if player1jy > 0:
                 print("down")
-        elif event.type
+        elif event.type == pygame.

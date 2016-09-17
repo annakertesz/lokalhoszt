@@ -191,22 +191,21 @@ while on:
                 character.blockpower += 50
             character.jump_step()
             character.crouch()
-            if len(character.moves) > 0:
-                for direction in character.moves[0]:
-                    character.move(direction)
-                character.in_punch -= 1
-                character.in_head -= 1
-                character.in_kick -= 1
-                if character.in_punch <= 0 and character.stage == 'punch':
-                    character.stage = 'stand'
-                if character.crouch_stage is False and character.stage == 'crouch':
-                    character.stage = 'stand'
-                if character.in_jump <= 0 and character.stage == 'jump':
-                    character.stage = 'stand'
-                if character.in_head <= 0 and character.stage == 'head':
-                    character.stage = 'stand'
-                if character.in_kick <= 0 and character.stage == 'kick':
-                    character.stage = 'stand'
+            for direction in character.moves:
+                character.move(direction)
+            character.in_punch -= 1
+            character.in_head -= 1
+            character.in_kick -= 1
+            if character.in_punch <= 0 and character.stage == 'punch':
+                character.stage = 'stand'
+            if character.crouch_stage is False and character.stage == 'crouch':
+                character.stage = 'stand'
+            if character.in_jump <= 0 and character.stage == 'jump':
+                character.stage = 'stand'
+            if character.in_head <= 0 and character.stage == 'head':
+                character.stage = 'stand'
+            if character.in_kick <= 0 and character.stage == 'kick':
+                character.stage = 'stand'
 
         display.blit(background_image, [0, 0])
         char_1_life.show()
