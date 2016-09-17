@@ -110,75 +110,89 @@ while on:
                             char_2.in_jump = 50
                     elif player2jy > 0:
                         char_2.crouch_stage = True
-                elif event.type == pygame.JOYBUTTONDOWN:
-                    
-        # KEYBOARD INPUT
-        else:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    game_over = True
-                    on = False
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT:
-                        char_1.moves.append("right")
-                    elif event.key == pygame.K_LEFT:
-                        char_1.moves.append("left")
-                    elif event.key == pygame.K_d:
-                        char_2.moves.append("right")
-                    elif event.key == pygame.K_a:
-                        char_2.moves.append("left")
-                    elif event.key == pygame.K_w:
-                        if char_2.in_jump <= 0:
-                            char_2.in_jump = 50
-                    elif event.key == pygame.K_UP:
-                        if char_1.in_jump <= 0:
-                            char_1.in_jump = 50
-                    elif event.key == pygame.K_s:
-                        char_2.crouch_stage = True
-                    elif event.key == pygame.K_DOWN:
-                        char_1.crouch_stage = True
-                # PUNCH
-                    elif event.key == pygame.K_l:
-                        char_1.punch()
-                    elif event.key == pygame.K_SPACE:
-                        char_2.punch()
-
-                # HEAD
-                    elif event.key == pygame.K_k:
-                        char_1.head()
-                    elif event.key == pygame.K_x:
-                        char_2.head()
-                # KICK
-                    elif event.key == pygame.K_j:
-                        char_1.kick()
-                    elif event.key == pygame.K_c:
-                        char_2.kick()
-
-                    elif event.key == pygame.K_m:
-                        char_1.block()
-                    elif event.key == pygame.K_n:
-                        char_2.block()
-                    elif event.key == pygame.K_y:
-                        random.choice(characters).life = 100
-                # -------------------------
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_RIGHT:
-                        char_1.moves.remove("right")
-
-                    elif event.key == pygame.K_LEFT:
-                        char_1.moves.remove("left")
-                    elif event.key == pygame.K_d:
-                        char_2.moves.remove("right")
-                    elif event.key == pygame.K_a:
-                        char_2.moves.remove("left")
-                    elif event.key == pygame.K_s:
-                        char_2.crouch_stage = False
-                    elif event.key == pygame.K_DOWN:
-                        char_1.crouch_stage = False
-                    elif event.key == pygame.K_m:
-                        char_1.block_out()
-                    elif event.key == pygame.K_n:
-                        char_2.block_out()
+                elif player1_joystick.get_button(0):
+                    char_1.punch()
+                elif player2_joystick.get_button(0):
+                    char_2.punch()
+                elif player1_joystick.get_button(1):
+                    char_1.head()
+                elif player2_joystick.get_button(1):
+                    char_2.head()
+                elif player1_joystick.get_button(2):
+                    char_1.kick()
+                elif player2_joystick.get_button(2):
+                    char_2.kick()
+                elif player1_joystick.get_button(3):
+                    char_1.block()
+                elif player2_joystick.get_button(3):
+                    char_2.block()
+        # # KEYBOARD INPUT
+        # else:
+        #     for event in pygame.event.get():
+        #         if event.type == pygame.QUIT:
+        #             game_over = True
+        #             on = False
+        #         if event.type == pygame.KEYDOWN:
+        #             if event.key == pygame.K_RIGHT:
+        #                 char_1.moves.append("right")
+        #             elif event.key == pygame.K_LEFT:
+        #                 char_1.moves.append("left")
+        #             elif event.key == pygame.K_d:
+        #                 char_2.moves.append("right")
+        #             elif event.key == pygame.K_a:
+        #                 char_2.moves.append("left")
+        #             elif event.key == pygame.K_w:
+        #                 if char_2.in_jump <= 0:
+        #                     char_2.in_jump = 50
+        #             elif event.key == pygame.K_UP:
+        #                 if char_1.in_jump <= 0:
+        #                     char_1.in_jump = 50
+        #             elif event.key == pygame.K_s:
+        #                 char_2.crouch_stage = True
+        #             elif event.key == pygame.K_DOWN:
+        #                 char_1.crouch_stage = True
+        #         # PUNCH
+        #             elif event.key == pygame.K_l:
+        #                 char_1.punch()
+        #             elif event.key == pygame.K_SPACE:
+        #                 char_2.punch()
+        #
+        #         # HEAD
+        #             elif event.key == pygame.K_k:
+        #                 char_1.head()
+        #             elif event.key == pygame.K_x:
+        #                 char_2.head()
+        #         # KICK
+        #             elif event.key == pygame.K_j:
+        #                 char_1.kick()
+        #             elif event.key == pygame.K_c:
+        #                 char_2.kick()
+        #
+        #             elif event.key == pygame.K_m:
+        #                 char_1.block()
+        #             elif event.key == pygame.K_n:
+        #                 char_2.block()
+        #             elif event.key == pygame.K_y:
+        #                 random.choice(characters).life = 100
+        #         # -------------------------
+        #         elif event.type == pygame.KEYUP:
+        #             if event.key == pygame.K_RIGHT:
+        #                 char_1.moves.remove("right")
+        #
+        #             elif event.key == pygame.K_LEFT:
+        #                 char_1.moves.remove("left")
+        #             elif event.key == pygame.K_d:
+        #                 char_2.moves.remove("right")
+        #             elif event.key == pygame.K_a:
+        #                 char_2.moves.remove("left")
+        #             elif event.key == pygame.K_s:
+        #                 char_2.crouch_stage = False
+        #             elif event.key == pygame.K_DOWN:
+        #                 char_1.crouch_stage = False
+        #             elif event.key == pygame.K_m:
+        #                 char_1.block_out()
+        #             elif event.key == pygame.K_n:
+        #                 char_2.block_out()
 
         for character in characters:
             if character.stage == 'block':
