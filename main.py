@@ -200,7 +200,6 @@ while on:
         char_1.show_img()
         char_2.show_img()
         pygame.display.update()
-        print('event.type:', event.type)
         clock.tick(60)
 
 pygame.quit()
