@@ -83,36 +83,36 @@ while on:
     # JOYSTICK INPUT
 
         if char_1.joystick is not None and char_2.joystick is not None:
-            print(' átjutott az if-en')
-            player1jx = char_1.joystick.get_axis(0)
-            player1jy = char_1.joystick.get_axis(1)
-            print('tovább is ment')
-            print(player1jx)
-            if player1jx < 0:
-                print('balra')
-                char_1.moves.append("left")
-            elif player1jx > 0:
-                print('jobbra')
-                char_1.moves.append("right")
-            if player1jy < 0:
-                print('ugrás')
-                if char_1.in_jump <= 0:
-                    char_1.in_jump = 50
-            elif player1jy > 0:
-                print('guggolás')
-                char_1.crouch_stage = True
+            for event in pygame.event.get():
+                if event.type == pygame.locals.JOYAXISMOTION:
+                    player1jx = char_1.joystick.get_axis(0)
+                    player1jy = char_1.joystick.get_axis(1)
+                    print(player1jx)
+                if player1jx < 0:
+                    print('balra')
+                    char_1.moves.append("left")
+                elif player1jx > 0:
+                    print('jobbra')
+                    char_1.moves.append("right")
+                if player1jy < 0:
+                    print('ugrás')
+                    if char_1.in_jump <= 0:
+                        char_1.in_jump = 50
+                elif player1jy > 0:
+                    print('guggolás')
+                    char_1.crouch_stage = True
 
-            player2jx = char_2.joystick.get_axis(0)
-            player2jy = char_2.joystick.get_axis(1)
-            if player2jx < 0:
-                char_2.moves.append("left")
-            elif player2jx > 0:
-                char_2.moves.append("right")
-            if player2jy < 0:
-                if char_2.in_jump <= 0:
-                    char_2.in_jump = 50
-            elif player2jy > 0:
-                char_2.crouch_stage = True
+                player2jx = char_2.joystick.get_axis(0)
+                player2jy = char_2.joystick.get_axis(1)
+                if player2jx < 0:
+                    char_2.moves.append("left")
+                elif player2jx > 0:
+                    char_2.moves.append("right")
+                if player2jy < 0:
+                    if char_2.in_jump <= 0:
+                        char_2.in_jump = 50
+                elif player2jy > 0:
+                    char_2.crouch_stage = True
         # KEYBOARD INPUT
         else:
             for event in pygame.event.get():
