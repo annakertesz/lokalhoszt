@@ -280,7 +280,7 @@ while on:
         for pattern in BloodPatternHandler.patterns:
             pattern.remaining_time -= 1
             if pattern.remaining_time > 0:
-                display.blit(pygame.transform.scale(blood, pattern.coordinates))
+                display.blit(blood, pattern.coordinates)
         pygame.display.update()
         clock.tick(60)
 
