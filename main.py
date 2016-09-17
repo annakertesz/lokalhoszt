@@ -88,7 +88,7 @@ while on:
                 player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
                 player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
                 if player1jx < 0:
-                    char_1 -= 10
+                    char_1.x -= 10
                 elif player1jx > 0:
                     char_1.x += 10
                 if player1jy < 0:
@@ -97,9 +97,9 @@ while on:
                 elif player1jy > 0:
                     char_1.crouch_stage = True
                 if player2jx < 0:
-                    char_2 -= 10
+                    char_2.x -= 10
                 elif player2jx > 0:
-                    char_2 += 10
+                    char_2.x += 10
                 if player2jy < 0:
                     if char_2.in_jump <= 0:
                         char_2.in_jump = 50
