@@ -285,9 +285,9 @@ while on:
         pygame.display.update()
         clock.tick(60)
 
-if char_1.won == True:
+if char_1.won == 3:
     display.blit(pygame.image.load("images/bluewon.png").convert(), [0, 0])
-elif char_2.won == True:
+elif char_2.won == 3:
     display.blit(pygame.image.load("images/redwon.png").convert(), [0, 0])
 pygame.display.update()
 
