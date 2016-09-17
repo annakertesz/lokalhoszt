@@ -45,7 +45,6 @@ try:
 except IndexError:
     player1_joystick = None
     player2_joystick = None
-    print("bazzeg")
 
 mixer.music.set_volume(0.4)
 # mixer.music.play(-1)
