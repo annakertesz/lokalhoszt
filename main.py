@@ -98,7 +98,7 @@ while on:
                 pygame.time.wait(1000)
             if char_2.life < 1:
                 char_1.won += 1
-                display.blit(pygame.image.load("images/blue.png").convert(), [0, 0])
+                display.blit(pygame.image.load("images/red.png").convert(), [0, 0])
                 pygame.display.update()
                 pygame.time.wait(1000)
             if char_1.won == 3 or char_2.won == 3:
@@ -262,6 +262,8 @@ if char_1.won == True:
     display.blit(pygame.image.load("images/bluewon.png").convert(), [0, 0])
 elif char_2.won == True:
     display.blit(pygame.image.load("images/redwon.png").convert(), [0, 0])
+pygame.display.update()
+
 pygame.time.wait(4000)
 
 pygame.quit()
