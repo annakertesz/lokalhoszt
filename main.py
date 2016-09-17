@@ -192,7 +192,7 @@ while on:
             character.jump_step()
             character.crouch()
             if len(character.moves) > 0:
-                for direction in character.moves[1]:
+                for direction in character.moves[0]:
                     character.move(direction)
                 character.in_punch -= 1
                 character.in_head -= 1
