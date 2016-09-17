@@ -6,15 +6,15 @@ from sounds import *
 
 class Character:
 
-    def __init__(self, x, y,  direction, movestages, display, width=70, height=150, life=100):
+    def __init__(self, x, y,  direction, movestages, display, width=150, height=280, life=100):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.body_width = 55
-        self.from_head_shoulder_level = 105
-        self.arm_length = 130
-        self.arm_height = 5
+        self.body_width = 150
+        self.from_head_shoulder_level = 130
+        self.arm_length = 135
+        self.arm_height = 35
         self.moves = []
         self.movestages = movestages
         self.stage = 'stand'
