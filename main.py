@@ -4,6 +4,7 @@ from lifebar import Lifebar
 from pygame.locals import *
 from sounds import *
 import random
+import sys
 
 
 pygame.init()
@@ -166,6 +167,8 @@ while on:
             char_1.block()
         elif player2_joystick.get_button(3):
             char_2.block()
+        elif player2_joystick.get_button(10):
+            sys.exit()
         # # KEYBOARD INPUT
         # else:
         #     for event in pygame.event.get():
