@@ -5,6 +5,7 @@ from pygame.locals import *
 from sounds import *
 import random
 
+
 pygame.init()
 
 
@@ -75,14 +76,15 @@ while on:
     display.blit(pygame.image.load("images/count_2.png").convert(), [0, 0])
     pygame.display.update()
     pygame.time.wait(1000)
+    mixer.music.stop()
+    soundtrack = mixer.music.load('sounds/newsoundtrack.wav')
+    mixer.music.play(-1)
     display.blit(pygame.image.load("images/count_1.png").convert(), [0, 0])
     pygame.display.update()
     pygame.time.wait(1000)
     game_over = False
     char_1.life = 100
     char_2.life = 100
-
-
 
     while not game_over:
         char_1.checking_overlaping()
