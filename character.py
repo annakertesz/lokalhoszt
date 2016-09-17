@@ -69,22 +69,22 @@ class Character:
                 self.x += 10
                 self.direction = 'right'
             else:
-                self.x = 1199
+                self.x = 1100
         elif direction == 'left':
-            if self.x > 81:
+            if self.x > 80:
                 self.x -= 10
                 self.direction = 'left'
             else:
-                self.x = 80
+                self.x = 120
 
 
     def jump(self):
         if self.in_jump > 20:
             self.y -= int(self.in_jump / 3)
-        elif self.y < 400:
+        elif self.y < 600:
             self.crouch_stage = False
             self.y += int((25-self.in_jump)/1.5)
-        elif self.y == 400:
+        elif self.y == 600:
             self.stage = 'stand'
 
     def jump_step(self):
