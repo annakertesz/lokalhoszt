@@ -1,11 +1,13 @@
 from pygame import *
 mixer.init()
-# soundtrack = mixer.music.load('sounds/newsoundtrack.mp3')
+
+soundtrack = mixer.music.load('sounds/newsoundtrack.wav')
+intro_music = mixer.music.load('sounds/bensound-retrosoul.wav')
 sound = {
     'block': mixer.Sound('sounds/block.wav'),
     'swing': mixer.Sound('sounds/swing.wav'),
     'hit1': mixer.Sound('sounds/hit1.wav'),
-    'hit2': mixer.Sound('sounds/hit2.wav'),
+    'hit2': mixer.Sound('sounds/hit2.wav')
     'hit3': mixer.Sound('sounds/hit3.wav'),
     'hit4': mixer.Sound('sounds/hit4.wav'),
     'hit5': mixer.Sound('sounds/hit5.wav'),
