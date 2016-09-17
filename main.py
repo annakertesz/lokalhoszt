@@ -1,6 +1,7 @@
 import pygame
 from character import Character
 from lifebar import Lifebar
+from pygame.locals import *
 from sounds import *
 import random
 
