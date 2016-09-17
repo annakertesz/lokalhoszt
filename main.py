@@ -199,8 +199,11 @@ while on:
                 character.blockpower += 50
             character.jump_step()
             character.crouch()
-            for direction in character.moves:
-                character.move(direction)
+            for x in len(range(character.moves)):
+                if x <= 2:
+                    character.move(character.moves[x])
+                else:
+                    break
             character.in_punch -= 1
             character.in_head -= 1
             character.in_kick -= 1
