@@ -83,6 +83,7 @@ while on:
             if event.type == pygame.locals.JOYAXISMOTION:
                 player1jx, player1jy = char_1.joystick.get_axis(0), char_2.joystick.get_axis(1)
                 if player1jx < 0:
+                    print('fos')
                     char_1.moves.append("left")
                 elif player1jx > 0:
                     char_1.moves.append("right")
