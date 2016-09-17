@@ -31,7 +31,7 @@ movestages = {
              }
 
 
-char_1 = Character(0 , infoObject.current_h - 600, "right", movestages, display)
+char_1 = Character(0, infoObject.current_h - 600, "right", movestages, display)
 char_2 = Character(infoObject.current_w - 250, infoObject.current_h - 600, "left", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
@@ -203,14 +203,15 @@ while on:
                 character.blockpower += 50
             character.jump_step()
             character.crouch()
-            for x in range(len(character.moves)):
-                if x <= 2:
-                    character.move(character.moves[x])
-                else:
-                    break
+            # for x in range(len(character.moves)):
+            #     if x <= 2:
+            #         character.move(character.moves[x])
+            #     else:
+            #         break
             character.in_punch -= 1
             character.in_head -= 1
             character.in_kick -= 1
+
             if character.in_punch <= 0 and character.stage == 'punch':
                 character.stage = 'stand'
             if character.crouch_stage is False and character.stage == 'crouch':
