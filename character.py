@@ -65,11 +65,18 @@ class Character:
 
     def move(self, direction):
         if direction == 'right':
-            self.x += 10
-            self.direction = 'right'
+            if self.x <1200:
+                self.x += 10
+                self.direction = 'right'
+            else:
+                self.x = 1199
         elif direction == 'left':
-            self.x -= 10
-            self.direction = 'left'
+            if self.x > 81:
+                self.x -= 10
+                self.direction = 'left'
+            else:
+                self.x = 80
+
 
     def jump(self):
         if self.in_jump > 20:
