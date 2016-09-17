@@ -84,7 +84,6 @@ while on:
         for event in pygame.event.get():
 
         # JOYSTICK INPUT
-        try:
             if event.type == pygame.locals.JOYAXISMOTION:
                 player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
                 player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
