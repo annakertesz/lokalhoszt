@@ -5,6 +5,7 @@ from pygame.locals import *
 from sounds import *
 import random
 import sys
+from BloodPatternHandler import BloodPatternHandler
 
 
 pygame.init()
