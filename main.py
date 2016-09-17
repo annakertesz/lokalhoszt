@@ -199,7 +199,7 @@ while on:
                 character.blockpower += 50
             character.jump_step()
             character.crouch()
-            for x in len(range(character.moves)):
+            for x in range(len(character.moves)):
                 if x <= 2:
                     character.move(character.moves[x])
                 else:
