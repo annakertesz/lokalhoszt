@@ -268,7 +268,7 @@ while on:
 
         after_life = char_1.life + char_2.life
 
-        if before_life > afterlife:
+        if before_life > after_life:
             BloodPatternHandler()
 
         display.blit(pygame.transform.scale(background_image, (infoObject.current_w, infoObject.current_h)),(0, 0))
