@@ -49,7 +49,7 @@ except IndexError:
     player2_joystick = None
 
 mixer.music.set_volume(0.4)
-# mixer.music.play(-1)
+mixer.music.play(-1)
 
 
 on = True
