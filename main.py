@@ -36,20 +36,28 @@ characters = [char_1, char_2]
 # JOYSTICK
 #try:
 
-pygame.joystick.init()
-joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-joysticks[0].init()
-joysticks[1].init()
-char_1.joystick = joysticks[0]
-char_2.joystick = joysticks[1]
-print('sikerült megcsinálni')
+# pygame.joystick.init()
+# joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+# joysticks[0].init()
+# joysticks[1].init()
+# char_1.joystick = joysticks[0]
+# char_2.joystick = joysticks[1]
+# print('sikerült megcsinálni')
 # except IndexError:
 #     char_1.joystick = None
 #     char_2.joystick = None
 mixer.music.set_volume(0.4)
 mixer.music.play(-1)
-
-
+pygame.joystick.init()
+joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+try:
+   joysticks[0].init()
+   joysticks[1].init()
+   player1_joystick = joysticks[0]
+   player2_joystick = joysticks[1]
+except IndexError:
+   player1_joystick = None
+   player2_joystick = None
 on = True
 # display.blit(story_1, [0, 0])
 # clock.tick(1000)
@@ -80,9 +88,9 @@ while on:
         char_2_life = Lifebar(display, char_2, 700, 20)
     # JOYSTICK INPUT
 
-        if char_1.joystick is not None and char_2.joystick is not None:
+        if player1_joystick is not None and player2_joystick is not None:
             print(' átjutott az if-en')
-            player1jx, player1jy = char_1.joystick.get_axis(0), char_1.joystick.get_axis(1)
+            player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
             print('tovább is ment')
             print(player1jx)
             if player1jx < 0:
@@ -99,7 +107,7 @@ while on:
                 print('guggolás')
                 char_1.crouch_stage = True
 
-            player2jx, player2jy = char_2.joystick.get_axis(0), char_2.joystick.get_axis(1)
+            player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
             if player2jx < 0:
                 char_2.moves.append("left")
             elif player2jx > 0:
