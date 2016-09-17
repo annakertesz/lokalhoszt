@@ -3,7 +3,6 @@ import random
 from sounds import *
 
 
-
 class Character:
 
     def __init__(self, x, y,  direction, movestages, display, width=150, height=280, life=100):
@@ -40,9 +39,9 @@ class Character:
         body_rect = pygame.Rect(self.x, self.y, self.width, self.height)
         opponent_body_rect = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
         if opponent_body_rect.colliderect(body_rect):
-            if self.direction == 'left':
+            if self.direction == 'left' and self.opponent.direction == 'right':
                 self.opponent.x -= 11
-            elif self.direction == 'right':
+            elif self.direction == 'right' and self.opponent.direction == 'left':
                 self.opponent.x += 11
 
     def space_limit(self):

@@ -15,7 +15,7 @@ clock = pygame.time.Clock()
 pygame.mixer.pre_init(44100, 16, 2, 4096)
 pygame.init()
 
-background_image = pygame.image.load("images/background.jpg").convert()
+background_image = pygame.image.load("images/background.png").convert()
 
 movestages = {
                        'stand': pygame.image.load('images/stand.png').convert_alpha(),
