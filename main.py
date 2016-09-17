@@ -53,17 +53,37 @@ mixer.music.play(-1)
 
 
 on = True
-# display.blit(story_1, [0, 0])
-# clock.tick(1000)
-# display.blit(story_2, [0, 0])
-# clock.tick(1000)
-# display.blit(story_3, [0, 0])
-# clock.tick(1000)
+display.blit(pygame.image.load("images/str_1.png").convert(), [0, 0])
+pygame.display.update()
+pygame.time.wait(3000)
+display.blit(pygame.image.load("images/str_2.png").convert(), [0, 0])
+pygame.display.update()
+pygame.time.wait(3000)
+display.blit(pygame.image.load("images/str_3.png").convert(), [0, 0])
+pygame.display.update()
+pygame.time.wait(3000)
+display.blit(pygame.image.load("images/str_4.png").convert(), [0, 0])
+pygame.display.update()
+pygame.time.wait(3000)
+display.blit(pygame.image.load("images/str_5.png").convert(), [0, 0])
+pygame.display.update()
+pygame.time.wait(3000)
 while on:
-
+    display.blit(pygame.image.load("images/count_3.png").convert(), [0, 0])
+    pygame.display.update()
+    pygame.time.wait(1000)
+    display.blit(pygame.image.load("images/count_2.png").convert(), [0, 0])
+    pygame.display.update()
+    pygame.time.wait(1000)
+    display.blit(pygame.image.load("images/count_1.png").convert(), [0, 0])
+    pygame.display.update()
+    pygame.time.wait(1000)
     game_over = False
     char_1.life = 100
     char_2.life = 100
+
+
+
     while not game_over:
         char_1.checking_overlaping()
         char_2.checking_overlaping()
@@ -229,5 +249,11 @@ while on:
         char_2.show_img()
         pygame.display.update()
         clock.tick(60)
+
+if char_1.won == True:
+    display.blit(pygame.image.load("images/bluewon.png").convert(), [0, 0])
+elif char_2.won == True:
+    display.blit(pygame.image.load("images/redwon.png").convert(), [0, 0])
+pygame.time.wait(4000)
 
 pygame.quit()
