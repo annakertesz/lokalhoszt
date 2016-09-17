@@ -104,7 +104,7 @@ while on:
             if char_1.won == 3 or char_2.won == 3:
                 on = False
         char_1_life = Lifebar(display, char_1, 20, 20)
-        char_2_life = Lifebar(display, char_2, infoObject.current_w-250, 20)
+        char_2_life = Lifebar(display, char_2, infoObject.current_w-500, 20)
     # JOYSTICK INPUT
 
         for event in pygame.event.get():
@@ -120,6 +120,7 @@ while on:
                     char_1.x += 10
                     char_1.direction = 'right'
                 if player1jy < 0:
+                    char_1.crouch_stage = False
                     if char_1.in_jump <= 0:
                         char_1.in_jump = 50
                 elif player1jy > 0:
@@ -131,6 +132,7 @@ while on:
                     char_2.x += 10
                     char_2.direction = 'right'
                 if player2jy < 0:
+                    char_1.crouch_stage = False
                     if char_2.in_jump <= 0:
                         char_2.in_jump = 50
                 elif player2jy > 0:
