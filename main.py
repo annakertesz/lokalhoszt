@@ -79,7 +79,9 @@ while on:
                 if (e.dict['axis'] == 1):
                     axis = "Y"
                     print(1)
-                
+                else:
+                    print(1)
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     char_1.moves.append("right")
