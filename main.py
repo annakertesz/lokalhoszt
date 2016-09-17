@@ -89,8 +89,10 @@ while on:
                 player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
                 if player1jx < 0:
                     char_1.x -= 10
+                    char_1.direction = 'left'
                 elif player1jx > 0:
                     char_1.x += 10
+                    char_1.direction = 'right'
                 if player1jy < 0:
                     if char_1.in_jump <= 0:
                         char_1.in_jump = 50
@@ -98,8 +100,10 @@ while on:
                     char_1.crouch_stage = True
                 if player2jx < 0:
                     char_2.x -= 10
+                    char_1.direction = 'left'
                 elif player2jx > 0:
                     char_2.x += 10
+                    char_2.direction = 'right'
                 if player2jy < 0:
                     if char_2.in_jump <= 0:
                         char_2.in_jump = 50

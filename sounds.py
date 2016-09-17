@@ -2,7 +2,7 @@ from pygame import *
 mixer.init()
 
 soundtrack = mixer.music.load('sounds/newsoundtrack.wav')
-intro_music = mixer.music.load('sounds/bensound-retrosoul.wav')
+#intro_music = mixer.music.queue('sounds/bensound-retrosoul.wav')
 sound = {
     'block': mixer.Sound('sounds/block.wav'),
     'swing': mixer.Sound('sounds/swing.wav'),
