@@ -8,4 +8,4 @@ class BloodPatternHandler():
 
         self.coordinates = [random.randint(100, 700), random.randint(100, 700)]
         self.remaining_time = 1000
-        self.__class__.append(self)
+        self.__class__.patterns.append(self)
