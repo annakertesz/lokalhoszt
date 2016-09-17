@@ -34,7 +34,7 @@ char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
 # JOYSTICK
-try:
+#try:
 
     pygame.joystick.init()
     joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
@@ -46,8 +46,8 @@ try:
 # except IndexError:
 #     char_1.joystick = None
 #     char_2.joystick = None
-mixer.music.set_volume(0.4)
-mixer.music.play(-1)
+    mixer.music.set_volume(0.4)
+    mixer.music.play(-1)
 
 
 on = True
