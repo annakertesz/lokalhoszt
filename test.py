@@ -29,5 +29,5 @@ while True:
             if player1jy > 0:
                 print("down")
         elif event.type == pygame.JOYBUTTONDOWN:
-            if event['joy'] == 0:
+            if event.key == 0:
                 print(1)
