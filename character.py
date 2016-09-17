@@ -28,6 +28,7 @@ class Character:
         self.in_punch = 0
         self.opponent = None
         self.won = 0
+        self.joystick = None
 
     def show_img(self):
         if self.direction == 'left':
@@ -72,6 +73,7 @@ class Character:
         if self.in_jump > 20:
             self.y -= int(self.in_jump / 3)
         elif self.y < 400:
+            self.crouch_stage = False
             self.y += int((25-self.in_jump)/1.5)
         elif self.y == 400:
             self.stage = 'stand'

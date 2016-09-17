@@ -33,6 +33,17 @@ char_2 = Character(500, 20, "right", movestages, display)
 char_1.opponent = char_2
 char_2.opponent = char_1
 characters = [char_1, char_2]
+# JOYSTICK
+try:
+    pygame.joystick.init()
+    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+    joysticks[0].init()
+    joysticks[1].init()
+    char_1.joystick = joysticks[0]
+    char_2.joystick = joysticks[1]
+except IndexError:
+    char_1.joystick = None
+    char_2.joystick = None
 mixer.music.set_volume(0.4)
 mixer.music.play(-1)
 
@@ -64,6 +75,33 @@ while on:
                 on = False
         char_1_life = Lifebar(display, char_1, 20, 20)
         char_2_life = Lifebar(display, char_2, 700, 20)
+        # JOYSTICK INPUT
+        try:
+            if event.type == pygame.locals.JOYAXISMOTION:
+                player1jx, player1jy = char_1.joystick.get_axis(0), char_2.joystick.get_axis(1)
+                if player1jx < 0:
+                    char_1.moves.append("left")
+                if player1jx > 0:
+                    char_1.moves.append("right")
+                if player1jy < 0:
+                    if char_1.in_jump <= 0:
+                        char_1.in_jump = 50
+                if player1jy > 0:
+                    char_1.crouch_stage = True
+
+                player2jx, player2jy = char_2.joystick.get_axis(0), char_2.joystick.get_axis(1)
+                if player2jx < 0:
+                    char_2.moves.append("left")
+                if player2jx > 0:
+                    char_2.moves.append("right")
+                if player2jy < 0:
+                    if char_2.in_jump <= 0:
+                        char_2.in_jump = 50
+                if player2jy > 0:
+                    char_2.crouch_stage = True
+        except:
+            pass
+        # KEYBOARD INPUT
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
