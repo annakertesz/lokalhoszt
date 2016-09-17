@@ -135,7 +135,7 @@ class Character:
                 if self.direction == 'left':
                     x_push = - x_push
             else:
-                sound['empty_kick'].play()
+                sound['kick_empty'].play()
 
 
     def head(self):
