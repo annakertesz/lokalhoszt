@@ -57,10 +57,10 @@ class Character:
 
     def move(self, direction):
         if direction == 'right':
-            self.x += 10
+            self.x += 1
             self.direction = 'right'
         elif direction == 'left':
-            self.x -= 10
+            self.x -= 1
             self.direction = 'left'
 
         if direction == 'down':
