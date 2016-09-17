@@ -122,14 +122,17 @@ while on:
                     char_1.x += 10
                     char_1.direction = 'right'
                 if player1jy < 0:
-                    char_1.crouch_stage = False
                     if char_1.in_jump <= 0:
                         char_1.in_jump = 50
                 elif player1jy > 0:
                     char_1.crouch_stage = True
+                elif player1jy == 0:
+                    char_1.crouch_stage = False
                 if player2jx < 0:
                     char_2.x -= 10
                     char_2.direction = 'left'
+                elif player2jy == 0:
+                    char_2.crouch_stage = False
                 elif player2jx > 0:
                     char_2.x += 10
                     char_2.direction = 'right'
