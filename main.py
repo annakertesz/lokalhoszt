@@ -100,7 +100,7 @@ while on:
                     char_1.crouch_stage = True
                 if player2jx < 0:
                     char_2.x -= 10
-                    char_1.direction = 'left'
+                    char_2.direction = 'left'
                 elif player2jx > 0:
                     char_2.x += 10
                     char_2.direction = 'right'
