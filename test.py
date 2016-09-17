@@ -28,6 +28,5 @@ while True:
                 print("up")
             if player1jy > 0:
                 print("down")
-        elif event.type == pygame.JOYBUTTONDOWN:
-            if event.key == 0:
-                print(1)
+        elif player1_joystick.get_button(0):
+            print(1)
