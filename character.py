@@ -104,7 +104,7 @@ class Character:
             punch_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
                                      self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
-        if self.in_punch <= -15 and self.in_kick <= -15 and self.in_head <= -15:
+        if self.in_punch <= -5 and self.in_kick <= -5 and self.in_head <= -5:
             self.in_punch = 30
             random_hit = [sound['hit1'], sound['hit2'], sound['hit3'], sound['hit4'], sound['hit5']]
             random.choice(random_hit).play()
@@ -137,7 +137,7 @@ class Character:
             kick_rect = pygame.Rect(self.x - self.body_width, self.y + self.from_head_shoulder_level,
                                     self.arm_length, self.arm_height)
         opponent_rectbox = pygame.Rect(self.opponent.x, self.opponent.y, self.opponent.width, self.opponent.height)
-        if self.in_punch <= -20 and self.in_kick <= -20 and self.in_head <= -20:
+        if self.in_punch <= -10 and self.in_kick <= -10 and self.in_head <= -10:
             self.in_kick = 20
             self.stage = 'kick'
             self.show_img()

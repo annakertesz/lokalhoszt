@@ -28,5 +28,6 @@ while True:
                 print("up")
             if player1jy > 0:
                 print("down")
-        elif player1_joystick.get_button(0):
+       # elif player1_joystick.get_button(0):
+
             
