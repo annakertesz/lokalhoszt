@@ -91,8 +91,9 @@ while on:
                     char_1.moves.append("left")
                 elif player1jx > 0:
                     char_1.moves.append("right")
-                if char_1.in_jump <= 0:
-                    char_1.in_jump = 50
+                if player1jy < 0:
+                    if char_1.in_jump <= 0:
+                        char_1.in_jump = 50
                 elif player1jy > 0:
                     char_1.crouch_stage = True
                 if player2jx < 0:
